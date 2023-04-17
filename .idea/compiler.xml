@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="adm-application" />
+        <module name="delivery-administration" />
+        <module name="application" />
+        <module name="bom-module" />
+        <module name="adm-infrastructure" />
+        <module name="infrastructure" />
+        <module name="common-module" />
+        <module name="integration-module" />
+        <module name="domain" />
+        <module name="adm-domain" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
