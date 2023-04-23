@@ -12,9 +12,9 @@
     <artifactId>delivery-administartion</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>adm-domain</module>
-        <module>adm-infrastructure</module>
-        <module>adm-application</module>
+        <module>domain</module>
+        <module>infrastructure</module>
+        <module>application</module>
     </modules>
 
     <properties>
