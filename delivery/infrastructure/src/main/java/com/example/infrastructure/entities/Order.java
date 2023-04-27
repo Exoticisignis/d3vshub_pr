@@ -15,20 +15,14 @@ import lombok.NonNull;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long order_id;
+    @NonNull
     private Long customer_id;
     @NonNull
-    private String name;
-    @NonNull
-    private String surname;
-    @NonNull
-    private String email;
-    @NonNull
-    private String phone;
-    @NonNull
-    private String hashed_password;
-    @NonNull
-    private String salt;
+    private double order_total;
+    //@NonNull
+   //private order_date;
 }

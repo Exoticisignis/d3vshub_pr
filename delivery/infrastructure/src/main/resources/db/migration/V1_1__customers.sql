@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS Customers (
-    customer_id INT PRIMARY KEY,
+    customer_id INT PRIMARY KEY UNIQUE,
     name VARCHAR(50),
+    surname VARCHAR(50),
     address VARCHAR(100),
     phone VARCHAR(20),
     email VARCHAR(50),
