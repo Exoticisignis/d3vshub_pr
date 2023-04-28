@@ -1,13 +1,6 @@
 package com.example.infrastructure.entities;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +28,7 @@ public class Delivery {
     @JoinColumn(name = "courier_id")
     private Courier courier;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "delivery_date")
     private Instant deliveryDate;
 
