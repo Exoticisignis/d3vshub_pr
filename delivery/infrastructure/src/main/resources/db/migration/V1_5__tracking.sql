@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Trackings (
+CREATE TABLE IF NOT EXISTS Tracking (
     tracking_id INT PRIMARY KEY UNIQUE,
     delivery_id INT,
     location VARCHAR(100),

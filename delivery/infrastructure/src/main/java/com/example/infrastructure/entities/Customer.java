@@ -1,34 +1,48 @@
 package com.example.infrastructure.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.NonNull;
 
-
 @Entity
-@Getter @Setter
+@Table(name = "Customers")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Customer {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long customer_id;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "customer_id")
+    private Long customerId;
+
     @NonNull
     private String name;
+
     @NonNull
     private String surname;
+
     @NonNull
-    private String email;
+    private String address;
+
     @NonNull
     private String phone;
+
     @NonNull
-    private String hashed_password;
+    private String email;
+
     @NonNull
     private String salt;
+
+    @NonNull
+    @Column(name = "hashed_password")
+    private String hashedPassword;
 }
