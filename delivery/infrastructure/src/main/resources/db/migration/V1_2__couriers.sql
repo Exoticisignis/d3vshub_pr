@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Couriers (
-    courier_id INT PRIMARY KEY UNIQUE,
+    courier_id BIGINT PRIMARY KEY UNIQUE,
     name VARCHAR(50),
     surname VARCHAR(50),
     phone VARCHAR(20),

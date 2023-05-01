@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS Order_Items (
-    order_id INT,
-    item_id INT,
+    order_id BIGINT,
+    item_id BIGINT,
     quantity INT,
     PRIMARY KEY (order_id, item_id),
     CONSTRAINT fk_order_id

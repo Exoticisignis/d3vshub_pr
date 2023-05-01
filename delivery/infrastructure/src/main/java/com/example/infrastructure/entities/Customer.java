@@ -45,4 +45,12 @@ public class Customer {
     @NonNull
     @Column(name = "hashed_password")
     private String hashedPassword;
+    @Override
+    public String toString(){
+        return this.name + " " + this.surname;
+    }
+    public Customer(String name, String surname){
+        this.name = name;
+        this.surname = surname;
+    }
 }

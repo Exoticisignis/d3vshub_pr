@@ -13,7 +13,7 @@ public class DataSourceConfig {
     public DataSource getDataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.h2.Driver");
-        dataSourceBuilder.url("jdbc:h2:mem:delivery");
+        dataSourceBuilder.url("jdbc:h2:file:./data/delivery");
         return dataSourceBuilder.build();
     }
 }

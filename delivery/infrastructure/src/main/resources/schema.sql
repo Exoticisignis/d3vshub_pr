@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Items (
-    item_id BIGINT PRIMARY KEY UNIQUE,
+    item_id INT PRIMARY KEY UNIQUE,
     item_name VARCHAR(50),
     price DECIMAL(10,2),
     quantity INT,
