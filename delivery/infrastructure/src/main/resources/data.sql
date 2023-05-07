@@ -1,9 +1,0 @@
-INSERT INTO Items VALUES (1, 'name1', 10.10, 1, 'cat1', 'image1', 'desc1', 'allergen1');
-INSERT INTO Items VALUES (2, 'name2', 10.10, 2, 'cat2', 'image2', 'desc2', 'allergen2');
-INSERT INTO Items VALUES (3, 'name3', 10.10, 3, 'cat3', 'image3', 'desc3', 'allergen3');
-INSERT INTO Items VALUES (4, 'name4', 10.10, 4, 'cat4', 'image4', 'desc4', 'allergen4');
-INSERT INTO Items VALUES (5, 'name5', 10.10, 5, 'cat5', 'image5', 'desc5', 'allergen5');
-INSERT INTO Items VALUES (6, 'name6', 10.10, 6, 'cat6', 'image6', 'desc6', 'allergen6');
-INSERT INTO Items VALUES (7, 'name7', 10.10, 7, 'cat7', 'image7', 'desc7', 'allergen7');
-INSERT INTO Items VALUES (8, 'name8', 10.10, 8, 'cat8', 'image8', 'desc8', 'allergen8');
-INSERT INTO Items VALUES (9, 'name9', 10.10, 9, 'cat9', 'image9', 'desc9', 'allergen9');
