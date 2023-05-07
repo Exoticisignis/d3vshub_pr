@@ -12,6 +12,8 @@ public class DeliveryMapper implements RowMapper<Delivery> {
         Delivery d = new Delivery();
         d.setId(rs.getLong("delivery_id"));
         d.setDeliveryDate(rs.getTimestamp("delivery_date").toInstant());
-        return null;
+        d.setCourier(new CourierMapper().mapRow(rs, rowNum));
+        d.setOrder(new OrderMapper().mapRow(rs, rowNum));
+        return d;
     }
 }

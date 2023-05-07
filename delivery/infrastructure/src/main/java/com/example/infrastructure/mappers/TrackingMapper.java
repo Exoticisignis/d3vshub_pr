@@ -14,6 +14,7 @@ public class TrackingMapper implements RowMapper<Tracking> {
         t.setLocation(rs.getString("location"));
         t.setStatus(rs.getString("status"));
         t.setUpdateTime(rs.getTimestamp("update_date").toInstant());
-        return null;
+        t.setDelivery(new DeliveryMapper().mapRow(rs, rowNum));
+        return t;
     }
 }

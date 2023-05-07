@@ -13,6 +13,8 @@ public class OrderMapper implements RowMapper<Order> {
         o.setOrderId(rs.getLong("order_id"));
         o.setTotalPrice(rs.getDouble("total_price"));
         o.setOrderDate(rs.getTimestamp("order_date").toInstant());
-        return null;
+        o.setCustomer(new CustomerMapper().mapRow(rs, rowNum));
+        o.setOrderItems(new OrderItemMapper().mapRowList(rs));
+        return o;
     }
 }
