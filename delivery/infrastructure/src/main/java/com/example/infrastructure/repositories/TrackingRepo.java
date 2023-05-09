@@ -2,6 +2,8 @@ package com.example.infrastructure.repositories;
 
 import com.example.infrastructure.entities.Tracking;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface TrackingRepo extends CrudRepository<Tracking, Integer> {
+@Repository
+public interface TrackingRepo extends CrudRepository<Tracking, Long> {
 }

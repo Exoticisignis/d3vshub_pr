@@ -2,6 +2,8 @@ package com.example.infrastructure.repositories;
 
 import com.example.infrastructure.entities.Courier;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CouriersRepo extends CrudRepository<Courier, Integer> {
+@Repository
+public interface CouriersRepo extends CrudRepository<Courier, Long> {
 }
