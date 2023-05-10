@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.Instant;
 
 @Entity
-@Table(name = "Tracking")
+@Table(name = "tracking")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

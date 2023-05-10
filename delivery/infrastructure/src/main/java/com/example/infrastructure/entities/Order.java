@@ -22,7 +22,7 @@ import java.time.Instant;
 import java.util.List;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
