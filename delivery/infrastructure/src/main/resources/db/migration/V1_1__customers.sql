@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Customers (
-    customer_id BIGINT PRIMARY KEY UNIQUE,
+    customer_id SERIAL PRIMARY KEY UNIQUE,
     name VARCHAR(50),
     surname VARCHAR(50),
     address VARCHAR(100),

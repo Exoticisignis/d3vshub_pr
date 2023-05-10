@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Deliveries (
-    delivery_id BIGINT PRIMARY KEY UNIQUE,
+    delivery_id SERIAL PRIMARY KEY UNIQUE,
     order_id INT,
     courier_id INT,
     delivery_date TIMESTAMP,
