@@ -13,7 +13,7 @@ import lombok.Setter;
 import lombok.NonNull;
 
 @Entity
-@Table(name = "Customers")
+@Table(name = "customers")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -52,5 +52,15 @@ public class Customer {
     public Customer(String name, String surname){
         this.name = name;
         this.surname = surname;
+    }
+    //constructor for test uses
+    public Customer(String value){
+        this.name = value;
+        this.surname = value;
+        this.salt = value;
+        this.address = value;
+        this.email = value;
+        this.hashedPassword = value;
+        this.phone = value;
     }
 }

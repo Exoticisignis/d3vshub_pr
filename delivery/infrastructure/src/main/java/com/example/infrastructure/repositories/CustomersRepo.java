@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustomersRepo extends CrudRepository<Customer, Long> {
+    long count();
 }
