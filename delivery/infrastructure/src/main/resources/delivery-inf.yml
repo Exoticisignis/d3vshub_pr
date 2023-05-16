@@ -1,0 +1,687 @@
+openapi: "3.0.3"
+info:
+  title: Delivery API
+  description: This is a basic REST API implementing the [Open API Specification]
+  version: 0.0.1
+paths:
+  /customers:
+    get:
+      summary: List all customers
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A list of customers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a customer
+      responses:
+        '201':
+          description: Null response
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /customers/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Get customer by id
+      responses:
+        '200':
+          description: Get customer by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete customer by id
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Id not found
+  /couriers:
+    get:
+      summary: List all couriers
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A list of couriers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Courier'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a courier
+      responses:
+        '201':
+          description: Null response
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /couriers/{id}:
+    get:
+      summary: Get courier by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Get courier by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Courier'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete courier by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Id not found
+  /orders:
+    get:
+      summary: List all orders
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A list of orders.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create an order
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /orders/{id}:
+    get:
+      summary: Get order by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Get order by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete order by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Id not found
+  /orders/{customerId}:
+    parameters:
+      - in: path
+        name: customerId
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: List all orders for a customer
+      responses:
+        '200':
+          description: A list of orders for a customer.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /items:
+    get:
+      summary: List all items
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A list of items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create an item
+      responses:
+        '201':
+          description: Null response
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /items/{id}:
+    get:
+      summary: Get item by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Get item by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete item by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Id not found
+  /deliveries:
+    get:
+      summary: List all deliveries
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A list of deliveries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Delivery'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a delivery
+      responses:
+        '201':
+          description: Null response
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /deliveries/{id}:
+    get:
+      summary: Get delivery by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Get delivery by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Delivery'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete courier by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Id not found
+  /tracking:
+    get:
+      summary: List all tracking
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A list of tracking.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tracking'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a tracking
+      responses:
+        '201':
+          description: Null response
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /tracking/{id}:
+    get:
+      summary: Get tracking by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Get tracking by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracking'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete tracking by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Id not found
+  /trackingForDelivery/{id}:
+    get:
+      summary: Get tracking by delviery id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Get tracking by delivery id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracking'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /itemsForOrder/{orderId}:
+    parameters:
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: List all items for an order
+      responses:
+        '200':
+          description: A list of items for an order.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /ordersForItem/{itemId}:
+    parameters:
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: List all orders containing item
+      responses:
+        '200':
+          description: A list of orders containing item.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Customer:
+      type: object
+      required:
+        - id
+        - name
+        - surname
+        - address
+        - phone
+        - salt
+        - password
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        surname:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+        login:
+          type: string
+        salt:
+          type: string
+        password:
+          type: string
+          format: password
+    Courier:
+      type: object
+      required:
+        - id
+        - name
+        - surname
+        - login
+        - phone
+        - salt
+        - password
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        surname:
+          type: string
+        phone:
+          type: string
+        login:
+          type: string
+        salt:
+          type: string
+        password:
+          type: string
+          format: password
+    Item:
+      type: object
+      required:
+        - id
+        - price
+        - quantity
+        - category
+        - imageUrl
+        - description
+        - allergenInfo
+      properties:
+        id:
+          type: integer
+          format: int64
+        price:
+          type: number
+          format: double
+        quantity:
+          type: integer
+          format: int32
+        category:
+          type: string
+        imageUrl:
+          type: string
+        description:
+          type: string
+        allergenInfo:
+          type: string
+    Order:
+      type: object
+      required:
+        - id
+        - customer
+        - orderItems
+        - orderDate
+        - totalPrice
+        - address
+      properties:
+        id:
+          type: integer
+          format: int64
+        customer:
+          type: integer
+          format: int32
+        orderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        orderDate:
+          type: string
+          format: date-time
+        totalPrice:
+          type: number
+          format: double
+        address:
+          type: string
+    Delivery:
+      type: object
+      required:
+        - id
+        - order
+        - courier
+        - deliveryDate
+      properties:
+        id:
+          type: integer
+          format: int64
+        order:
+          type: integer
+          format: int32
+        courier:
+          type: integer
+          format: int32
+        deliveryDate:
+          type: string
+          format: date-time
+    Tracking:
+      type: object
+      required:
+        - id
+        - status
+        - location
+        - updateTime
+        - delivery
+      properties:
+        id:
+          type: integer
+          format: int64
+        status:
+          type: string
+        location:
+          type: string
+        updateTime:
+          type: string
+          format: date-time
+        delivery:
+          type: integer
+          format: int32
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
