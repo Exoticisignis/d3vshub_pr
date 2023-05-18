@@ -27,7 +27,7 @@ public class Tracking   {
   private OffsetDateTime updateTime;
 
   @JsonProperty("delivery")
-  private Integer delivery;
+  private Long delivery;
 
   public Tracking id(Long id) {
     this.id = id;
@@ -114,7 +114,7 @@ public class Tracking   {
     this.updateTime = updateTime;
   }
 
-  public Tracking delivery(Integer delivery) {
+  public Tracking delivery(Long delivery) {
     this.delivery = delivery;
     return this;
   }
@@ -127,11 +127,11 @@ public class Tracking   {
   @NotNull
 
 
-  public Integer getDelivery() {
+  public Long getDelivery() {
     return delivery;
   }
 
-  public void setDelivery(Integer delivery) {
+  public void setDelivery(Long delivery) {
     this.delivery = delivery;
   }
 

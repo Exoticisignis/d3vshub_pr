@@ -50,7 +50,7 @@ public interface DeliveriesApiDelegate {
      *         or Id not found (status code 404)
      * @see DeliveriesApi#deliveriesIdDelete
      */
-    default ResponseEntity<String> deliveriesIdDelete(Integer id) {
+    default ResponseEntity<String> deliveriesIdDelete(Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -63,7 +63,7 @@ public interface DeliveriesApiDelegate {
      *         or unexpected error (status code 400)
      * @see DeliveriesApi#deliveriesIdGet
      */
-    default ResponseEntity<Delivery> deliveriesIdGet(Integer id) {
+    default ResponseEntity<Delivery> deliveriesIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

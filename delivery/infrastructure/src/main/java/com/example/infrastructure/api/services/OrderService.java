@@ -27,18 +27,24 @@ public class OrderService implements OrdersApiDelegate {
     }
 
     @Override
-    public ResponseEntity<String> ordersIdDelete(Integer id){
+    public ResponseEntity<String> ordersIdDelete(Long id){
         return ResponseEntity.ok().body("Order deleted");
     }
 
     @Override
-    public ResponseEntity<Order> ordersIdGet(Integer id){
+    public ResponseEntity<Order> ordersIdGet(Long id){
         Order o = new Order();
         return ResponseEntity.ok().body(o);
     }
 
     @Override
-    public ResponseEntity<List<Order>> ordersForItemIdGet(Integer id){
+    public ResponseEntity<List<Order>> ordersCustomerIdGet(Long id){
+        List<Order> list = new ArrayList<>();
+        return ResponseEntity.ok().body(list);
+    }
+
+    @Override
+    public ResponseEntity<List<Order>> ordersForItemIdGet(Long id){
         List<Order> list = new ArrayList<>();
         return ResponseEntity.ok().body(list);
     }

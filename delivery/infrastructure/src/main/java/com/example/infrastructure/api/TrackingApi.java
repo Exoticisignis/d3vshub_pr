@@ -58,7 +58,7 @@ public interface TrackingApi {
     @DeleteMapping(
         value = "/tracking/{id}"
     )
-    default ResponseEntity<String> trackingIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<String> trackingIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().trackingIdDelete(id);
     }
 
@@ -78,7 +78,7 @@ public interface TrackingApi {
         value = "/tracking/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Tracking> trackingIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<Tracking> trackingIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().trackingIdGet(id);
     }
 
@@ -115,7 +115,7 @@ public interface TrackingApi {
             value = "/trackingForDelivery/{id}",
             produces = { "application/json" }
     )
-    default ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().trackingForDeliveryIdGet(id);
     }
 

@@ -27,12 +27,12 @@ public class DeliveryService implements DeliveriesApiDelegate {
     }
 
     @Override
-    public ResponseEntity<String> deliveriesIdDelete(Integer id){
+    public ResponseEntity<String> deliveriesIdDelete(Long id){
         return ResponseEntity.ok().body("Delivery deleted");
     }
 
     @Override
-    public ResponseEntity<Delivery> deliveriesIdGet(Integer id){
+    public ResponseEntity<Delivery> deliveriesIdGet(Long id){
         Delivery d = new Delivery();
         return ResponseEntity.ok().body(d);
     }

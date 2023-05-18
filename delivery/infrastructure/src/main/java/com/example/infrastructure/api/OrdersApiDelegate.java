@@ -28,7 +28,7 @@ public interface OrdersApiDelegate {
      *         or unexpected error (status code 400)
      * @see OrdersApi#ordersCustomerIdGet
      */
-    default ResponseEntity<List<Order>> ordersCustomerIdGet(Integer customerId) {
+    default ResponseEntity<List<Order>> ordersCustomerIdGet(Long customerId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -72,7 +72,7 @@ public interface OrdersApiDelegate {
      *         or Id not found (status code 404)
      * @see OrdersApi#ordersIdDelete
      */
-    default ResponseEntity<String> ordersIdDelete(Integer id) {
+    default ResponseEntity<String> ordersIdDelete(Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -85,7 +85,7 @@ public interface OrdersApiDelegate {
      *         or unexpected error (status code 400)
      * @see OrdersApi#ordersIdGet
      */
-    default ResponseEntity<Order> ordersIdGet(Integer id) {
+    default ResponseEntity<Order> ordersIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -118,7 +118,7 @@ public interface OrdersApiDelegate {
      *         or unexpected error (status code 400)
      * @see OrdersForItemApi#ordersForItemItemIdGet
      */
-    default ResponseEntity<List<Order>> ordersForItemIdGet(Integer itemId) {
+    default ResponseEntity<List<Order>> ordersForItemIdGet(Long itemId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

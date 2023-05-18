@@ -27,12 +27,12 @@ public class ItemService implements ItemsApiDelegate {
     }
 
     @Override
-    public ResponseEntity<String> itemsIdDelete(Integer id){
+    public ResponseEntity<String> itemsIdDelete(Long id){
         return ResponseEntity.ok().body("Item deleted");
     }
 
     @Override
-    public ResponseEntity<Item> itemsIdGet(Integer id){
+    public ResponseEntity<Item> itemsIdGet(Long id){
         Item i = new Item();
         return ResponseEntity.ok().body(i);
     }

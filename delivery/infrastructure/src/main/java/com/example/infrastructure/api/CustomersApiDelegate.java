@@ -50,7 +50,7 @@ public interface CustomersApiDelegate {
      *         or Id not found (status code 404)
      * @see CustomersApi#customersIdDelete
      */
-    default ResponseEntity<String> customersIdDelete(Integer id) {
+    default ResponseEntity<String> customersIdDelete(Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -63,7 +63,7 @@ public interface CustomersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CustomersApi#customersIdGet
      */
-    default ResponseEntity<Customer> customersIdGet(Integer id) {
+    default ResponseEntity<Customer> customersIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

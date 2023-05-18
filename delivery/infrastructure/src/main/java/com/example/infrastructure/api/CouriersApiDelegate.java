@@ -50,7 +50,7 @@ public interface CouriersApiDelegate {
      *         or Id not found (status code 404)
      * @see CouriersApi#couriersIdDelete
      */
-    default ResponseEntity<String> couriersIdDelete(Integer id) {
+    default ResponseEntity<String> couriersIdDelete(Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -63,7 +63,7 @@ public interface CouriersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CouriersApi#couriersIdGet
      */
-    default ResponseEntity<Courier> couriersIdGet(Integer id) {
+    default ResponseEntity<Courier> couriersIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

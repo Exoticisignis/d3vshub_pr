@@ -27,12 +27,12 @@ public class CustomerService implements CustomersApiDelegate {
     }
 
     @Override
-    public ResponseEntity<String> customersIdDelete(Integer id){
+    public ResponseEntity<String> customersIdDelete(Long id){
         return ResponseEntity.ok().body("Customer deleted");
     }
 
     @Override
-    public ResponseEntity<Customer> customersIdGet(Integer id){
+    public ResponseEntity<Customer> customersIdGet(Long id){
         Customer c = new Customer();
         return ResponseEntity.ok().body(c);
     }

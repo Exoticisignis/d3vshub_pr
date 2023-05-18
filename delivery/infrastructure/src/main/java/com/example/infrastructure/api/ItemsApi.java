@@ -58,7 +58,7 @@ public interface ItemsApi {
     @DeleteMapping(
         value = "/items/{id}"
     )
-    default ResponseEntity<String> itemsIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<String> itemsIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().itemsIdDelete(id);
     }
 
@@ -78,7 +78,7 @@ public interface ItemsApi {
         value = "/items/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Item> itemsIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<Item> itemsIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().itemsIdGet(id);
     }
 

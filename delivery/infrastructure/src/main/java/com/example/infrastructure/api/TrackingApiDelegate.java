@@ -50,7 +50,7 @@ public interface TrackingApiDelegate {
      *         or Id not found (status code 404)
      * @see TrackingApi#trackingIdDelete
      */
-    default ResponseEntity<String> trackingIdDelete(Integer id) {
+    default ResponseEntity<String> trackingIdDelete(Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -63,7 +63,7 @@ public interface TrackingApiDelegate {
      *         or unexpected error (status code 400)
      * @see TrackingApi#trackingIdGet
      */
-    default ResponseEntity<Tracking> trackingIdGet(Integer id) {
+    default ResponseEntity<Tracking> trackingIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -88,7 +88,7 @@ public interface TrackingApiDelegate {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
-    default ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(Integer id) {
+    default ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

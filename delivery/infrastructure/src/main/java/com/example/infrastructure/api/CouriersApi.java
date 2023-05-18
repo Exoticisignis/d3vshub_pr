@@ -58,7 +58,7 @@ public interface CouriersApi {
     @DeleteMapping(
         value = "/couriers/{id}"
     )
-    default ResponseEntity<String> couriersIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<String> couriersIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().couriersIdDelete(id);
     }
 
@@ -78,7 +78,7 @@ public interface CouriersApi {
         value = "/couriers/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Courier> couriersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<Courier> couriersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().couriersIdGet(id);
     }
 

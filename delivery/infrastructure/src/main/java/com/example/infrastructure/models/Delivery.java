@@ -17,10 +17,10 @@ public class Delivery   {
   private Long id;
 
   @JsonProperty("order")
-  private Integer order;
+  private Long order;
 
   @JsonProperty("courier")
-  private Integer courier;
+  private Long courier;
 
   @JsonProperty("deliveryDate")
   @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
@@ -47,7 +47,7 @@ public class Delivery   {
     this.id = id;
   }
 
-  public Delivery order(Integer order) {
+  public Delivery order(Long order) {
     this.order = order;
     return this;
   }
@@ -60,15 +60,15 @@ public class Delivery   {
   @NotNull
 
 
-  public Integer getOrder() {
+  public Long getOrder() {
     return order;
   }
 
-  public void setOrder(Integer order) {
+  public void setOrder(Long order) {
     this.order = order;
   }
 
-  public Delivery courier(Integer courier) {
+  public Delivery courier(Long courier) {
     this.courier = courier;
     return this;
   }
@@ -81,11 +81,11 @@ public class Delivery   {
   @NotNull
 
 
-  public Integer getCourier() {
+  public Long getCourier() {
     return courier;
   }
 
-  public void setCourier(Integer courier) {
+  public void setCourier(Long courier) {
     this.courier = courier;
   }
 

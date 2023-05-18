@@ -27,12 +27,12 @@ public class CourierService implements CouriersApiDelegate {
     }
 
     @Override
-    public ResponseEntity<String> couriersIdDelete(Integer id){
+    public ResponseEntity<String> couriersIdDelete(Long id){
         return ResponseEntity.ok().body("Courier deleted");
     }
 
     @Override
-    public ResponseEntity<Courier> couriersIdGet(Integer id){
+    public ResponseEntity<Courier> couriersIdGet(Long id){
         Courier courier = new Courier();
         return ResponseEntity.ok().body(courier);
     }

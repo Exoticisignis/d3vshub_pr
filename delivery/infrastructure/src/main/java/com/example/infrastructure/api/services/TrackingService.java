@@ -27,18 +27,18 @@ public class TrackingService implements TrackingApiDelegate {
     }
 
     @Override
-    public ResponseEntity<String> trackingIdDelete(Integer id){
+    public ResponseEntity<String> trackingIdDelete(Long id){
         return ResponseEntity.ok().body("Tracking deleted");
     }
 
     @Override
-    public ResponseEntity<Tracking> trackingIdGet(Integer id){
+    public ResponseEntity<Tracking> trackingIdGet(Long id){
         Tracking t = new Tracking();
         return ResponseEntity.ok().body(t);
     }
 
     @Override
-    public ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(Integer id){
+    public ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(Long id){
         List<Tracking> list = new ArrayList<>();
         return ResponseEntity.ok().body(list);
     }

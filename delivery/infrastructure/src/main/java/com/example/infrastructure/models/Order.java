@@ -19,7 +19,7 @@ public class Order   {
   private Long id;
 
   @JsonProperty("customer")
-  private Integer customer;
+  private Long customer;
 
   @JsonProperty("orderItems")
   @Valid
@@ -56,7 +56,7 @@ public class Order   {
     this.id = id;
   }
 
-  public Order customer(Integer customer) {
+  public Order customer(Long customer) {
     this.customer = customer;
     return this;
   }
@@ -69,11 +69,11 @@ public class Order   {
   @NotNull
 
 
-  public Integer getCustomer() {
+  public Long getCustomer() {
     return customer;
   }
 
-  public void setCustomer(Integer customer) {
+  public void setCustomer(Long customer) {
     this.customer = customer;
   }
 

@@ -50,7 +50,7 @@ public interface ItemsApiDelegate {
      *         or Id not found (status code 404)
      * @see ItemsApi#itemsIdDelete
      */
-    default ResponseEntity<String> itemsIdDelete(Integer id) {
+    default ResponseEntity<String> itemsIdDelete(Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -63,7 +63,7 @@ public interface ItemsApiDelegate {
      *         or unexpected error (status code 400)
      * @see ItemsApi#itemsIdGet
      */
-    default ResponseEntity<Item> itemsIdGet(Integer id) {
+    default ResponseEntity<Item> itemsIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

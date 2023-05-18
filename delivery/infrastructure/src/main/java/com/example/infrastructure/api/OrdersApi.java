@@ -39,7 +39,7 @@ public interface OrdersApi {
         value = "/orders/{customerId}",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Order>> ordersCustomerIdGet(@ApiParam(value = "",required=true) @PathVariable("customerId") Integer customerId) {
+    default ResponseEntity<List<Order>> ordersCustomerIdGet(@ApiParam(value = "",required=true) @PathVariable("customerId") Long customerId) {
         return getDelegate().ordersCustomerIdGet(customerId);
     }
 
@@ -78,7 +78,7 @@ public interface OrdersApi {
     @DeleteMapping(
         value = "/orders/{id}"
     )
-    default ResponseEntity<String> ordersIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<String> ordersIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().ordersIdDelete(id);
     }
 
@@ -98,7 +98,7 @@ public interface OrdersApi {
         value = "/orders/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Order> ordersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<Order> ordersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().ordersIdGet(id);
     }
 
@@ -136,7 +136,7 @@ public interface OrdersApi {
             value = "/ordersForItem/{itemId}",
             produces = { "application/json" }
     )
-    default ResponseEntity<List<Order>> ordersForItemIdGet(@ApiParam(value = "",required=true) @PathVariable("itemId") Integer itemId) {
+    default ResponseEntity<List<Order>> ordersForItemIdGet(@ApiParam(value = "",required=true) @PathVariable("itemId") Long itemId) {
         return getDelegate().ordersForItemIdGet(itemId);
     }
 }
