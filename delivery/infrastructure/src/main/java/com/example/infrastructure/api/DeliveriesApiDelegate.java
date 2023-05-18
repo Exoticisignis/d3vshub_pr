@@ -50,7 +50,7 @@ public interface DeliveriesApiDelegate {
      *         or Id not found (status code 404)
      * @see DeliveriesApi#deliveriesIdDelete
      */
-    default ResponseEntity<Void> deliveriesIdDelete(Integer id) {
+    default ResponseEntity<String> deliveriesIdDelete(Integer id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -84,7 +84,7 @@ public interface DeliveriesApiDelegate {
      *         or unexpected error (status code 400)
      * @see DeliveriesApi#deliveriesPost
      */
-    default ResponseEntity<Void> deliveriesPost() {
+    default ResponseEntity<String> deliveriesPost(Delivery delivery) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

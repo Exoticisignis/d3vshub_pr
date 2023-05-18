@@ -58,7 +58,7 @@ public interface ItemsApi {
     @DeleteMapping(
         value = "/items/{id}"
     )
-    default ResponseEntity<Void> itemsIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<String> itemsIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
         return getDelegate().itemsIdDelete(id);
     }
 
@@ -97,8 +97,27 @@ public interface ItemsApi {
         value = "/items",
         produces = { "application/json" }
     )
-    default ResponseEntity<Void> itemsPost() {
-        return getDelegate().itemsPost();
+    default ResponseEntity<String> itemsPost(@RequestBody Item item) {
+        return getDelegate().itemsPost(item);
+    }
+
+    /**
+     * GET /itemsForOrder/{orderId} : List all items for an order
+     *
+     * @param orderId  (required)
+     * @return A list of items for an order. (status code 200)
+     *         or unexpected error (status code 400)
+     */
+    @ApiOperation(value = "List all items for an order", nickname = "itemsForOrderOrderIdGet", notes = "", response = Item.class, responseContainer = "List", tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "A list of items for an order.", response = Item.class, responseContainer = "List"),
+            @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
+    @GetMapping(
+            value = "/itemsForOrder/{orderId}",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<List<Item>> itemsForOrderOrderIdGet(@ApiParam(value = "",required=true) @PathVariable("orderId") Integer orderId) {
+        return getDelegate().itemsForOrderOrderIdGet(orderId);
     }
 
 }

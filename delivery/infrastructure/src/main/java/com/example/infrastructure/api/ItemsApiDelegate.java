@@ -50,7 +50,7 @@ public interface ItemsApiDelegate {
      *         or Id not found (status code 404)
      * @see ItemsApi#itemsIdDelete
      */
-    default ResponseEntity<Void> itemsIdDelete(Integer id) {
+    default ResponseEntity<String> itemsIdDelete(Integer id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -84,7 +84,21 @@ public interface ItemsApiDelegate {
      *         or unexpected error (status code 400)
      * @see ItemsApi#itemsPost
      */
-    default ResponseEntity<Void> itemsPost() {
+    default ResponseEntity<String> itemsPost(Item item) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    default ResponseEntity<List<Item>> itemsForOrderOrderIdGet(Integer orderId) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"quantity\" : 5, \"price\" : 5.962133916683182, \"imageUrl\" : \"imageUrl\", \"allergenInfo\" : \"allergenInfo\", \"description\" : \"description\", \"id\" : 1, \"category\" : \"category\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

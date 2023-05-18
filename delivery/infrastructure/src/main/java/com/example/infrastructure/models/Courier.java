@@ -2,6 +2,7 @@ package com.example.infrastructure.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 

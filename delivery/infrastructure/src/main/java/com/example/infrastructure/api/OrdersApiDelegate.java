@@ -72,7 +72,7 @@ public interface OrdersApiDelegate {
      *         or Id not found (status code 404)
      * @see OrdersApi#ordersIdDelete
      */
-    default ResponseEntity<Void> ordersIdDelete(Integer id) {
+    default ResponseEntity<String> ordersIdDelete(Integer id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -106,7 +106,28 @@ public interface OrdersApiDelegate {
      *         or unexpected error (status code 200)
      * @see OrdersApi#ordersPost
      */
-    default ResponseEntity<Void> ordersPost() {
+    default ResponseEntity<String> ordersPost(Order order) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+    /**
+     * GET /ordersForItem/{itemId} : List all orders containing item
+     *
+     * @param itemId  (required)
+     * @return A list of orders containing item. (status code 200)
+     *         or unexpected error (status code 400)
+     * @see OrdersForItemApi#ordersForItemItemIdGet
+     */
+    default ResponseEntity<List<Order>> ordersForItemIdGet(Integer itemId) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"address\" : \"address\", \"totalPrice\" : 2.3021358869347655, \"id\" : 0, \"orderItems\" : [ { \"quantity\" : 5, \"price\" : 5.962133916683182, \"imageUrl\" : \"imageUrl\", \"allergenInfo\" : \"allergenInfo\", \"description\" : \"description\", \"id\" : 1, \"category\" : \"category\" }, { \"quantity\" : 5, \"price\" : 5.962133916683182, \"imageUrl\" : \"imageUrl\", \"allergenInfo\" : \"allergenInfo\", \"description\" : \"description\", \"id\" : 1, \"category\" : \"category\" } ], \"orderDate\" : \"2000-01-23T04:56:07.000+00:00\", \"customer\" : 6 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

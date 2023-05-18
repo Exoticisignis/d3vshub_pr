@@ -58,7 +58,7 @@ public interface TrackingApi {
     @DeleteMapping(
         value = "/tracking/{id}"
     )
-    default ResponseEntity<Void> trackingIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<String> trackingIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
         return getDelegate().trackingIdDelete(id);
     }
 
@@ -97,8 +97,26 @@ public interface TrackingApi {
         value = "/tracking",
         produces = { "application/json" }
     )
-    default ResponseEntity<Void> trackingPost() {
-        return getDelegate().trackingPost();
+    default ResponseEntity<String> trackingPost(@RequestBody Tracking tracking) {
+        return getDelegate().trackingPost(tracking);
+    }
+    /**
+     * GET /trackingForDelivery/{id} : Get tracking by delviery id
+     *
+     * @param id  (required)
+     * @return Get tracking by delivery id (status code 200)
+     *         or unexpected error (status code 400)
+     */
+    @ApiOperation(value = "Get tracking by delviery id", nickname = "trackingForDeliveryIdGet", notes = "", response = Tracking.class, tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Get tracking by delivery id", response = Tracking.class),
+            @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
+    @GetMapping(
+            value = "/trackingForDelivery/{id}",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+        return getDelegate().trackingForDeliveryIdGet(id);
     }
 
 }

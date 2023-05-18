@@ -150,6 +150,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <skip>true</skip>
                             <inputSpec>
                                 ${project.basedir}/src/main/resources/delivery-inf.yml
                             </inputSpec>

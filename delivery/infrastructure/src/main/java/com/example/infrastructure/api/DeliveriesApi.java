@@ -58,7 +58,7 @@ public interface DeliveriesApi {
     @DeleteMapping(
         value = "/deliveries/{id}"
     )
-    default ResponseEntity<Void> deliveriesIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<String> deliveriesIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
         return getDelegate().deliveriesIdDelete(id);
     }
 
@@ -97,8 +97,8 @@ public interface DeliveriesApi {
         value = "/deliveries",
         produces = { "application/json" }
     )
-    default ResponseEntity<Void> deliveriesPost() {
-        return getDelegate().deliveriesPost();
+    default ResponseEntity<String> deliveriesPost(@RequestBody Delivery delivery) {
+        return getDelegate().deliveriesPost(delivery);
     }
 
 }

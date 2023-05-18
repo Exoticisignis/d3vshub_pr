@@ -58,7 +58,7 @@ public interface CustomersApi {
     @DeleteMapping(
         value = "/customers/{id}"
     )
-    default ResponseEntity<Void> customersIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+    default ResponseEntity<String> customersIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
         return getDelegate().customersIdDelete(id);
     }
 
@@ -97,8 +97,8 @@ public interface CustomersApi {
         value = "/customers",
         produces = { "application/json" }
     )
-    default ResponseEntity<Void> customersPost() {
-        return getDelegate().customersPost();
+    default ResponseEntity<String> customersPost(@RequestBody Customer customer) {
+        return getDelegate().customersPost(customer);
     }
 
 }

@@ -50,7 +50,7 @@ public interface CouriersApiDelegate {
      *         or Id not found (status code 404)
      * @see CouriersApi#couriersIdDelete
      */
-    default ResponseEntity<Void> couriersIdDelete(Integer id) {
+    default ResponseEntity<String> couriersIdDelete(Integer id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -84,7 +84,7 @@ public interface CouriersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CouriersApi#couriersPost
      */
-    default ResponseEntity<Void> couriersPost() {
+    default ResponseEntity<String> couriersPost(Courier courier) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

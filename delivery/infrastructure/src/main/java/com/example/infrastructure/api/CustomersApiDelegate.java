@@ -50,7 +50,7 @@ public interface CustomersApiDelegate {
      *         or Id not found (status code 404)
      * @see CustomersApi#customersIdDelete
      */
-    default ResponseEntity<Void> customersIdDelete(Integer id) {
+    default ResponseEntity<String> customersIdDelete(Integer id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -84,7 +84,7 @@ public interface CustomersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CustomersApi#customersPost
      */
-    default ResponseEntity<Void> customersPost() {
+    default ResponseEntity<String> customersPost(Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
