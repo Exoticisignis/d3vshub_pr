@@ -24,6 +24,11 @@ public interface CouriersApi {
         return new CouriersApiDelegate() {};
     }
 
+    @GetMapping("/temp")
+    default ResponseEntity<String> temp(){
+        return getDelegate().temp();
+    }
+
     /**
      * GET /couriers : List all couriers
      *

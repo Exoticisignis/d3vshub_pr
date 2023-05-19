@@ -16,6 +16,10 @@ public class CourierService implements CouriersApiDelegate {
     private CouriersRepo couriersRepo;
 
     @Override
+    public ResponseEntity<String> temp(){
+        return ResponseEntity.ok().body("TEST");
+    }
+    @Override
     public ResponseEntity<String> couriersPost(Courier courier){
         return ResponseEntity.ok().body("Courier added");
     }

@@ -88,5 +88,8 @@ public interface CouriersApiDelegate {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
+    default ResponseEntity<String> temp(){
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
 
 }
