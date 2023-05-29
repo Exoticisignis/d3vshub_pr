@@ -1,5 +1,6 @@
 package com.example.infrastructure.models;
 
+import com.example.infrastructure.entities.Customer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +11,7 @@ import java.util.Objects;
  * Customer
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-16T17:35:02.597539500+02:00[Europe/Warsaw]")
-public class Customer   {
+public class CustomerDTO   {
   @JsonProperty("id")
   private Long id;
 
@@ -35,7 +36,19 @@ public class Customer   {
   @JsonProperty("password")
   private String password;
 
-  public Customer id(Long id) {
+  public CustomerDTO(){
+
+  }
+
+  public CustomerDTO(Customer customer){
+    this.id = customer.getCustomerId();
+    this.name = customer.getName();
+    this.surname = customer.getSurname();
+    this.phone = customer.getPhone();
+    this.login = customer.getEmail();
+  }
+
+  public CustomerDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -56,7 +69,7 @@ public class Customer   {
     this.id = id;
   }
 
-  public Customer name(String name) {
+  public CustomerDTO name(String name) {
     this.name = name;
     return this;
   }
@@ -77,7 +90,7 @@ public class Customer   {
     this.name = name;
   }
 
-  public Customer surname(String surname) {
+  public CustomerDTO surname(String surname) {
     this.surname = surname;
     return this;
   }
@@ -98,7 +111,7 @@ public class Customer   {
     this.surname = surname;
   }
 
-  public Customer address(String address) {
+  public CustomerDTO address(String address) {
     this.address = address;
     return this;
   }
@@ -119,7 +132,7 @@ public class Customer   {
     this.address = address;
   }
 
-  public Customer phone(String phone) {
+  public CustomerDTO phone(String phone) {
     this.phone = phone;
     return this;
   }
@@ -140,7 +153,7 @@ public class Customer   {
     this.phone = phone;
   }
 
-  public Customer login(String login) {
+  public CustomerDTO login(String login) {
     this.login = login;
     return this;
   }
@@ -160,7 +173,7 @@ public class Customer   {
     this.login = login;
   }
 
-  public Customer salt(String salt) {
+  public CustomerDTO salt(String salt) {
     this.salt = salt;
     return this;
   }
@@ -181,7 +194,7 @@ public class Customer   {
     this.salt = salt;
   }
 
-  public Customer password(String password) {
+  public CustomerDTO password(String password) {
     this.password = password;
     return this;
   }
@@ -211,7 +224,7 @@ public class Customer   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Customer customer = (Customer) o;
+    CustomerDTO customer = (CustomerDTO) o;
     return Objects.equals(this.id, customer.id) &&
         Objects.equals(this.name, customer.name) &&
         Objects.equals(this.surname, customer.surname) &&

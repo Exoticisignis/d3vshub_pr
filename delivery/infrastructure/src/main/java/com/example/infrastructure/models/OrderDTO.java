@@ -14,7 +14,7 @@ import java.util.Objects;
  * Order
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-16T17:35:02.597539500+02:00[Europe/Warsaw]")
-public class Order   {
+public class OrderDTO   {
   @JsonProperty("id")
   private Long id;
 
@@ -23,7 +23,7 @@ public class Order   {
 
   @JsonProperty("orderItems")
   @Valid
-  private List<Item> orderItems = new ArrayList<>();
+  private List<ItemDTO> orderItems = new ArrayList<>();
 
   @JsonProperty("orderDate")
   @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
@@ -35,7 +35,7 @@ public class Order   {
   @JsonProperty("address")
   private String address;
 
-  public Order id(Long id) {
+  public OrderDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -56,7 +56,7 @@ public class Order   {
     this.id = id;
   }
 
-  public Order customer(Long customer) {
+  public OrderDTO customer(Long customer) {
     this.customer = customer;
     return this;
   }
@@ -77,12 +77,12 @@ public class Order   {
     this.customer = customer;
   }
 
-  public Order orderItems(List<Item> orderItems) {
+  public OrderDTO orderItems(List<ItemDTO> orderItems) {
     this.orderItems = orderItems;
     return this;
   }
 
-  public Order addOrderItemsItem(Item orderItemsItem) {
+  public OrderDTO addOrderItemsItem(ItemDTO orderItemsItem) {
     this.orderItems.add(orderItemsItem);
     return this;
   }
@@ -96,15 +96,15 @@ public class Order   {
 
   @Valid
 
-  public List<Item> getOrderItems() {
+  public List<ItemDTO> getOrderItems() {
     return orderItems;
   }
 
-  public void setOrderItems(List<Item> orderItems) {
+  public void setOrderItems(List<ItemDTO> orderItems) {
     this.orderItems = orderItems;
   }
 
-  public Order orderDate(OffsetDateTime orderDate) {
+  public OrderDTO orderDate(OffsetDateTime orderDate) {
     this.orderDate = orderDate;
     return this;
   }
@@ -126,7 +126,7 @@ public class Order   {
     this.orderDate = orderDate;
   }
 
-  public Order totalPrice(Double totalPrice) {
+  public OrderDTO totalPrice(Double totalPrice) {
     this.totalPrice = totalPrice;
     return this;
   }
@@ -147,7 +147,7 @@ public class Order   {
     this.totalPrice = totalPrice;
   }
 
-  public Order address(String address) {
+  public OrderDTO address(String address) {
     this.address = address;
     return this;
   }
@@ -177,7 +177,7 @@ public class Order   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Order order = (Order) o;
+    OrderDTO order = (OrderDTO) o;
     return Objects.equals(this.id, order.id) &&
         Objects.equals(this.customer, order.customer) &&
         Objects.equals(this.orderItems, order.orderItems) &&

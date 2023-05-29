@@ -1,7 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.DeliveriesApiDelegate;
-import com.example.infrastructure.models.Delivery;
+import com.example.infrastructure.models.DeliveryDTO;
 import com.example.infrastructure.repositories.DeliveriesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +16,13 @@ public class DeliveryService implements DeliveriesApiDelegate {
     private DeliveriesRepo deliveries;
 
     @Override
-    public ResponseEntity<String> deliveriesPost(Delivery delivery){
+    public ResponseEntity<String> deliveriesPost(DeliveryDTO delivery){
         return ResponseEntity.ok().body("Delivery added");
     }
 
     @Override
-    public ResponseEntity<List<Delivery>>  deliveriesGet(Integer limit){
-        List<Delivery> list = new ArrayList<>();
+    public ResponseEntity<List<DeliveryDTO>>  deliveriesGet(Integer limit){
+        List<DeliveryDTO> list = new ArrayList<>();
         return ResponseEntity.ok().body(list);
     }
 
@@ -32,8 +32,8 @@ public class DeliveryService implements DeliveriesApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Delivery> deliveriesIdGet(Long id){
-        Delivery d = new Delivery();
+    public ResponseEntity<DeliveryDTO> deliveriesIdGet(Long id){
+        DeliveryDTO d = new DeliveryDTO();
         return ResponseEntity.ok().body(d);
     }
 }

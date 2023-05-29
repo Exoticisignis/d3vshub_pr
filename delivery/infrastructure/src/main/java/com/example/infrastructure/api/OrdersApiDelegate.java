@@ -1,6 +1,6 @@
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.models.Order;
+import com.example.infrastructure.models.OrderDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public interface OrdersApiDelegate {
      *         or unexpected error (status code 400)
      * @see OrdersApi#ordersCustomerIdGet
      */
-    default ResponseEntity<List<Order>> ordersCustomerIdGet(Long customerId) {
+    default ResponseEntity<List<OrderDTO>> ordersCustomerIdGet(Long customerId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -50,7 +50,7 @@ public interface OrdersApiDelegate {
      *         or unexpected error (status code 400)
      * @see OrdersApi#ordersGet
      */
-    default ResponseEntity<List<Order>> ordersGet(Integer limit) {
+    default ResponseEntity<List<OrderDTO>> ordersGet(Integer limit) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -85,7 +85,7 @@ public interface OrdersApiDelegate {
      *         or unexpected error (status code 400)
      * @see OrdersApi#ordersIdGet
      */
-    default ResponseEntity<Order> ordersIdGet(Long id) {
+    default ResponseEntity<OrderDTO> ordersIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -106,7 +106,7 @@ public interface OrdersApiDelegate {
      *         or unexpected error (status code 200)
      * @see OrdersApi#ordersPost
      */
-    default ResponseEntity<String> ordersPost(Order order) {
+    default ResponseEntity<String> ordersPost(OrderDTO order) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -118,7 +118,7 @@ public interface OrdersApiDelegate {
      *         or unexpected error (status code 400)
      * @see OrdersForItemApi#ordersForItemItemIdGet
      */
-    default ResponseEntity<List<Order>> ordersForItemIdGet(Long itemId) {
+    default ResponseEntity<List<OrderDTO>> ordersForItemIdGet(Long itemId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

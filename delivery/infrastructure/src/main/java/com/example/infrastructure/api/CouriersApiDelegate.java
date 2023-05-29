@@ -1,6 +1,6 @@
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.models.Courier;
+import com.example.infrastructure.models.CourierDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public interface CouriersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CouriersApi#couriersGet
      */
-    default ResponseEntity<List<Courier>> couriersGet(Integer limit) {
+    default ResponseEntity<List<CourierDTO>> couriersGet(Integer limit) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -63,7 +63,7 @@ public interface CouriersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CouriersApi#couriersIdGet
      */
-    default ResponseEntity<Courier> couriersIdGet(Long id) {
+    default ResponseEntity<CourierDTO> couriersIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -84,7 +84,7 @@ public interface CouriersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CouriersApi#couriersPost
      */
-    default ResponseEntity<String> couriersPost(Courier courier) {
+    default ResponseEntity<String> couriersPost(CourierDTO courier) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

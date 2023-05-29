@@ -1,7 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.CustomersApiDelegate;
-import com.example.infrastructure.models.Customer;
+import com.example.infrastructure.models.CustomerDTO;
 import com.example.infrastructure.repositories.CustomersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +16,13 @@ public class CustomerService implements CustomersApiDelegate {
     private CustomersRepo customers;
 
     @Override
-    public ResponseEntity<String> customersPost(Customer customer){
+    public ResponseEntity<String> customersPost(CustomerDTO customer){
         return ResponseEntity.ok().body("Customer added");
     }
 
     @Override
-    public ResponseEntity<List<Customer>> customersGet(Integer limit){
-        List<Customer> list = new ArrayList<>();
+    public ResponseEntity<List<CustomerDTO>> customersGet(Integer limit){
+        List<CustomerDTO> list = new ArrayList<>();
         return ResponseEntity.ok().body(list);
     }
 
@@ -32,8 +32,8 @@ public class CustomerService implements CustomersApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Customer> customersIdGet(Long id){
-        Customer c = new Customer();
+    public ResponseEntity<CustomerDTO> customersIdGet(Long id){
+        CustomerDTO c = new CustomerDTO();
         return ResponseEntity.ok().body(c);
     }
 }

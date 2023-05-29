@@ -6,7 +6,7 @@
 package com.example.infrastructure.api;
 
 import com.example.infrastructure.models.Error;
-import com.example.infrastructure.models.Tracking;
+import com.example.infrastructure.models.TrackingDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -31,15 +31,15 @@ public interface TrackingApi {
      * @return A list of tracking. (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "List all tracking", nickname = "trackingGet", notes = "", response = Tracking.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "List all tracking", nickname = "trackingGet", notes = "", response = TrackingDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of tracking.", response = Tracking.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "A list of tracking.", response = TrackingDTO.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/tracking",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Tracking>> trackingGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
+    default ResponseEntity<List<TrackingDTO>> trackingGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
         return getDelegate().trackingGet(limit);
     }
 
@@ -70,15 +70,15 @@ public interface TrackingApi {
      * @return Get tracking by id (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "Get tracking by id", nickname = "trackingIdGet", notes = "", response = Tracking.class, tags={  })
+    @ApiOperation(value = "Get tracking by id", nickname = "trackingIdGet", notes = "", response = TrackingDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Get tracking by id", response = Tracking.class),
+        @ApiResponse(code = 200, message = "Get tracking by id", response = TrackingDTO.class),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/tracking/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Tracking> trackingIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
+    default ResponseEntity<TrackingDTO> trackingIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().trackingIdGet(id);
     }
 
@@ -97,7 +97,7 @@ public interface TrackingApi {
         value = "/tracking",
         produces = { "application/json" }
     )
-    default ResponseEntity<String> trackingPost(@RequestBody Tracking tracking) {
+    default ResponseEntity<String> trackingPost(@RequestBody TrackingDTO tracking) {
         return getDelegate().trackingPost(tracking);
     }
     /**
@@ -107,15 +107,15 @@ public interface TrackingApi {
      * @return Get tracking by delivery id (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "Get tracking by delviery id", nickname = "trackingForDeliveryIdGet", notes = "", response = Tracking.class, tags={  })
+    @ApiOperation(value = "Get tracking by delviery id", nickname = "trackingForDeliveryIdGet", notes = "", response = TrackingDTO.class, tags={  })
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Get tracking by delivery id", response = Tracking.class),
+            @ApiResponse(code = 200, message = "Get tracking by delivery id", response = TrackingDTO.class),
             @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
             value = "/trackingForDelivery/{id}",
             produces = { "application/json" }
     )
-    default ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
+    default ResponseEntity<List<TrackingDTO>> trackingForDeliveryIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().trackingForDeliveryIdGet(id);
     }
 

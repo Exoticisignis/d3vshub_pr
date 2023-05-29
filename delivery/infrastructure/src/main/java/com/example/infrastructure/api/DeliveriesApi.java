@@ -5,7 +5,7 @@
  */
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.models.Delivery;
+import com.example.infrastructure.models.DeliveryDTO;
 import com.example.infrastructure.models.Error;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -31,15 +31,15 @@ public interface DeliveriesApi {
      * @return A list of deliveries. (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "List all deliveries", nickname = "deliveriesGet", notes = "", response = Delivery.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "List all deliveries", nickname = "deliveriesGet", notes = "", response = DeliveryDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of deliveries.", response = Delivery.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "A list of deliveries.", response = DeliveryDTO.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/deliveries",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Delivery>> deliveriesGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
+    default ResponseEntity<List<DeliveryDTO>> deliveriesGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
         return getDelegate().deliveriesGet(limit);
     }
 
@@ -70,15 +70,15 @@ public interface DeliveriesApi {
      * @return Get delivery by id (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "Get delivery by id", nickname = "deliveriesIdGet", notes = "", response = Delivery.class, tags={  })
+    @ApiOperation(value = "Get delivery by id", nickname = "deliveriesIdGet", notes = "", response = DeliveryDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Get delivery by id", response = Delivery.class),
+        @ApiResponse(code = 200, message = "Get delivery by id", response = DeliveryDTO.class),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/deliveries/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Delivery> deliveriesIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
+    default ResponseEntity<DeliveryDTO> deliveriesIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().deliveriesIdGet(id);
     }
 
@@ -97,7 +97,7 @@ public interface DeliveriesApi {
         value = "/deliveries",
         produces = { "application/json" }
     )
-    default ResponseEntity<String> deliveriesPost(@RequestBody Delivery delivery) {
+    default ResponseEntity<String> deliveriesPost(@RequestBody DeliveryDTO delivery) {
         return getDelegate().deliveriesPost(delivery);
     }
 

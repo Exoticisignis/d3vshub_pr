@@ -1,6 +1,6 @@
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.models.Tracking;
+import com.example.infrastructure.models.TrackingDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public interface TrackingApiDelegate {
      *         or unexpected error (status code 400)
      * @see TrackingApi#trackingGet
      */
-    default ResponseEntity<List<Tracking>> trackingGet(Integer limit) {
+    default ResponseEntity<List<TrackingDTO>> trackingGet(Integer limit) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -63,7 +63,7 @@ public interface TrackingApiDelegate {
      *         or unexpected error (status code 400)
      * @see TrackingApi#trackingIdGet
      */
-    default ResponseEntity<Tracking> trackingIdGet(Long id) {
+    default ResponseEntity<TrackingDTO> trackingIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -84,11 +84,11 @@ public interface TrackingApiDelegate {
      *         or unexpected error (status code 400)
      * @see TrackingApi#trackingPost
      */
-    default ResponseEntity<String> trackingPost(Tracking tracking) {
+    default ResponseEntity<String> trackingPost(TrackingDTO tracking) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
-    default ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(Long id) {
+    default ResponseEntity<List<TrackingDTO>> trackingForDeliveryIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

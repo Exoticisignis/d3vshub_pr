@@ -1,18 +1,20 @@
 package com.example.infrastructure.models;
 
+import com.example.infrastructure.entities.Tracking;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Objects;
 
 /**
  * Tracking
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-16T17:35:02.597539500+02:00[Europe/Warsaw]")
-public class Tracking   {
+public class TrackingDTO   {
   @JsonProperty("id")
   private Long id;
 
@@ -29,7 +31,17 @@ public class Tracking   {
   @JsonProperty("delivery")
   private Long delivery;
 
-  public Tracking id(Long id) {
+  public TrackingDTO(){
+
+  }
+  public TrackingDTO(Tracking tracking){
+    this.id = tracking.getId();
+    this.status = tracking.getStatus();
+    this.location = tracking.getLocation();
+    this.updateTime = OffsetDateTime.ofInstant(tracking.getUpdateTime(), ZoneOffset.UTC);
+  }
+
+  public TrackingDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -50,7 +62,7 @@ public class Tracking   {
     this.id = id;
   }
 
-  public Tracking status(String status) {
+  public TrackingDTO status(String status) {
     this.status = status;
     return this;
   }
@@ -71,7 +83,7 @@ public class Tracking   {
     this.status = status;
   }
 
-  public Tracking location(String location) {
+  public TrackingDTO location(String location) {
     this.location = location;
     return this;
   }
@@ -92,7 +104,7 @@ public class Tracking   {
     this.location = location;
   }
 
-  public Tracking updateTime(OffsetDateTime updateTime) {
+  public TrackingDTO updateTime(OffsetDateTime updateTime) {
     this.updateTime = updateTime;
     return this;
   }
@@ -114,7 +126,7 @@ public class Tracking   {
     this.updateTime = updateTime;
   }
 
-  public Tracking delivery(Long delivery) {
+  public TrackingDTO delivery(Long delivery) {
     this.delivery = delivery;
     return this;
   }
@@ -144,7 +156,7 @@ public class Tracking   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Tracking tracking = (Tracking) o;
+    TrackingDTO tracking = (TrackingDTO) o;
     return Objects.equals(this.id, tracking.id) &&
         Objects.equals(this.status, tracking.status) &&
         Objects.equals(this.location, tracking.location) &&
@@ -181,5 +193,6 @@ public class Tracking   {
     }
     return o.toString().replace("\n", "\n    ");
   }
+
 }
 

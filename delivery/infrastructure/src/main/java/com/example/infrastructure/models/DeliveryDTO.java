@@ -1,5 +1,6 @@
 package com.example.infrastructure.models;
 
+import com.example.infrastructure.entities.Delivery;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +13,7 @@ import java.util.Objects;
  * Delivery
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-16T17:35:02.597539500+02:00[Europe/Warsaw]")
-public class Delivery   {
+public class DeliveryDTO   {
   @JsonProperty("id")
   private Long id;
 
@@ -26,7 +27,17 @@ public class Delivery   {
   @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime deliveryDate;
 
-  public Delivery id(Long id) {
+  public DeliveryDTO(){
+
+  }
+
+  public DeliveryDTO(Delivery delivery){
+    this.id = delivery.getId();
+    this.order = delivery.getOrder().getOrderId();
+    this.courier = delivery.getCourier().getCourierId();
+  }
+
+  public DeliveryDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -47,7 +58,7 @@ public class Delivery   {
     this.id = id;
   }
 
-  public Delivery order(Long order) {
+  public DeliveryDTO order(Long order) {
     this.order = order;
     return this;
   }
@@ -68,7 +79,7 @@ public class Delivery   {
     this.order = order;
   }
 
-  public Delivery courier(Long courier) {
+  public DeliveryDTO courier(Long courier) {
     this.courier = courier;
     return this;
   }
@@ -89,7 +100,7 @@ public class Delivery   {
     this.courier = courier;
   }
 
-  public Delivery deliveryDate(OffsetDateTime deliveryDate) {
+  public DeliveryDTO deliveryDate(OffsetDateTime deliveryDate) {
     this.deliveryDate = deliveryDate;
     return this;
   }
@@ -120,7 +131,7 @@ public class Delivery   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Delivery delivery = (Delivery) o;
+    DeliveryDTO delivery = (DeliveryDTO) o;
     return Objects.equals(this.id, delivery.id) &&
         Objects.equals(this.order, delivery.order) &&
         Objects.equals(this.courier, delivery.courier) &&

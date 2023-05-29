@@ -1,7 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.ItemsApiDelegate;
-import com.example.infrastructure.models.Item;
+import com.example.infrastructure.models.ItemDTO;
 import com.example.infrastructure.repositories.ItemsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +16,13 @@ public class ItemService implements ItemsApiDelegate {
     private ItemsRepo items;
 
     @Override
-    public ResponseEntity<String> itemsPost(Item item){
+    public ResponseEntity<String> itemsPost(ItemDTO item){
         return ResponseEntity.ok().body("Item added");
     }
 
     @Override
-    public ResponseEntity<List<Item>> itemsGet(Integer limit){
-        List<Item> list = new ArrayList<>();
+    public ResponseEntity<List<ItemDTO>> itemsGet(Integer limit){
+        List<ItemDTO> list = new ArrayList<>();
         return ResponseEntity.ok().body(list);
     }
 
@@ -32,14 +32,14 @@ public class ItemService implements ItemsApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Item> itemsIdGet(Long id){
-        Item i = new Item();
+    public ResponseEntity<ItemDTO> itemsIdGet(Long id){
+        ItemDTO i = new ItemDTO();
         return ResponseEntity.ok().body(i);
     }
 
     @Override
-    public ResponseEntity<List<Item>> itemsForOrderOrderIdGet(Integer id){
-        List<Item> list = new ArrayList<>();
+    public ResponseEntity<List<ItemDTO>> itemsForOrderOrderIdGet(Integer id){
+        List<ItemDTO> list = new ArrayList<>();
         return ResponseEntity.ok().body(list);
     }
 }

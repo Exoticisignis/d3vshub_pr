@@ -6,7 +6,7 @@
 package com.example.infrastructure.api;
 
 import com.example.infrastructure.models.Error;
-import com.example.infrastructure.models.Order;
+import com.example.infrastructure.models.OrderDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -31,15 +31,15 @@ public interface OrdersApi {
      * @return A list of orders for a customer. (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "List all orders for a customer", nickname = "ordersCustomerIdGet", notes = "", response = Order.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "List all orders for a customer", nickname = "ordersCustomerIdGet", notes = "", response = OrderDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of orders for a customer.", response = Order.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "A list of orders for a customer.", response = OrderDTO.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/orders/{customerId}",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Order>> ordersCustomerIdGet(@ApiParam(value = "",required=true) @PathVariable("customerId") Long customerId) {
+    default ResponseEntity<List<OrderDTO>> ordersCustomerIdGet(@ApiParam(value = "",required=true) @PathVariable("customerId") Long customerId) {
         return getDelegate().ordersCustomerIdGet(customerId);
     }
 
@@ -51,15 +51,15 @@ public interface OrdersApi {
      * @return A list of orders. (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "List all orders", nickname = "ordersGet", notes = "", response = Order.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "List all orders", nickname = "ordersGet", notes = "", response = OrderDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of orders.", response = Order.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "A list of orders.", response = OrderDTO.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/orders",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Order>> ordersGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
+    default ResponseEntity<List<OrderDTO>> ordersGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
         return getDelegate().ordersGet(limit);
     }
 
@@ -90,15 +90,15 @@ public interface OrdersApi {
      * @return Get order by id (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "Get order by id", nickname = "ordersIdGet", notes = "", response = Order.class, tags={  })
+    @ApiOperation(value = "Get order by id", nickname = "ordersIdGet", notes = "", response = OrderDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Get order by id", response = Order.class),
+        @ApiResponse(code = 200, message = "Get order by id", response = OrderDTO.class),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/orders/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Order> ordersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
+    default ResponseEntity<OrderDTO> ordersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().ordersIdGet(id);
     }
 
@@ -117,7 +117,7 @@ public interface OrdersApi {
         value = "/orders",
         produces = { "application/json" }
     )
-    default ResponseEntity<String> ordersPost(@RequestBody Order order) {
+    default ResponseEntity<String> ordersPost(@RequestBody OrderDTO order) {
         return getDelegate().ordersPost(order);
     }
 
@@ -128,15 +128,15 @@ public interface OrdersApi {
      * @return A list of orders containing item. (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "List all orders containing item", nickname = "ordersForItemItemIdGet", notes = "", response = Order.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "List all orders containing item", nickname = "ordersForItemItemIdGet", notes = "", response = OrderDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "A list of orders containing item.", response = Order.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = "A list of orders containing item.", response = OrderDTO.class, responseContainer = "List"),
             @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
             value = "/ordersForItem/{itemId}",
             produces = { "application/json" }
     )
-    default ResponseEntity<List<Order>> ordersForItemIdGet(@ApiParam(value = "",required=true) @PathVariable("itemId") Long itemId) {
+    default ResponseEntity<List<OrderDTO>> ordersForItemIdGet(@ApiParam(value = "",required=true) @PathVariable("itemId") Long itemId) {
         return getDelegate().ordersForItemIdGet(itemId);
     }
 }

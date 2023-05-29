@@ -10,7 +10,7 @@ import java.util.Objects;
  * Item
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-16T17:35:02.597539500+02:00[Europe/Warsaw]")
-public class Item   {
+public class ItemDTO   {
   @JsonProperty("id")
   private Long id;
 
@@ -32,7 +32,7 @@ public class Item   {
   @JsonProperty("allergenInfo")
   private String allergenInfo;
 
-  public Item id(Long id) {
+  public ItemDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -53,7 +53,7 @@ public class Item   {
     this.id = id;
   }
 
-  public Item price(Double price) {
+  public ItemDTO price(Double price) {
     this.price = price;
     return this;
   }
@@ -74,7 +74,7 @@ public class Item   {
     this.price = price;
   }
 
-  public Item quantity(Integer quantity) {
+  public ItemDTO quantity(Integer quantity) {
     this.quantity = quantity;
     return this;
   }
@@ -95,7 +95,7 @@ public class Item   {
     this.quantity = quantity;
   }
 
-  public Item category(String category) {
+  public ItemDTO category(String category) {
     this.category = category;
     return this;
   }
@@ -116,7 +116,7 @@ public class Item   {
     this.category = category;
   }
 
-  public Item imageUrl(String imageUrl) {
+  public ItemDTO imageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
     return this;
   }
@@ -137,7 +137,7 @@ public class Item   {
     this.imageUrl = imageUrl;
   }
 
-  public Item description(String description) {
+  public ItemDTO description(String description) {
     this.description = description;
     return this;
   }
@@ -158,7 +158,7 @@ public class Item   {
     this.description = description;
   }
 
-  public Item allergenInfo(String allergenInfo) {
+  public ItemDTO allergenInfo(String allergenInfo) {
     this.allergenInfo = allergenInfo;
     return this;
   }
@@ -188,7 +188,7 @@ public class Item   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Item item = (Item) o;
+    ItemDTO item = (ItemDTO) o;
     return Objects.equals(this.id, item.id) &&
         Objects.equals(this.price, item.price) &&
         Objects.equals(this.quantity, item.quantity) &&

@@ -1,6 +1,6 @@
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.models.Customer;
+import com.example.infrastructure.models.CustomerDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public interface CustomersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CustomersApi#customersGet
      */
-    default ResponseEntity<List<Customer>> customersGet(Integer limit) {
+    default ResponseEntity<List<CustomerDTO>> customersGet(Integer limit) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -63,7 +63,7 @@ public interface CustomersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CustomersApi#customersIdGet
      */
-    default ResponseEntity<Customer> customersIdGet(Long id) {
+    default ResponseEntity<CustomerDTO> customersIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -84,7 +84,7 @@ public interface CustomersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CustomersApi#customersPost
      */
-    default ResponseEntity<String> customersPost(Customer customer) {
+    default ResponseEntity<String> customersPost(CustomerDTO customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

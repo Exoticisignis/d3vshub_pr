@@ -1,7 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.TrackingApiDelegate;
-import com.example.infrastructure.models.Tracking;
+import com.example.infrastructure.models.TrackingDTO;
 import com.example.infrastructure.repositories.TrackingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +16,13 @@ public class TrackingService implements TrackingApiDelegate {
     private TrackingRepo tracking;
 
     @Override
-    public ResponseEntity<String> trackingPost(Tracking tracking){
+    public ResponseEntity<String> trackingPost(TrackingDTO tracking){
         return ResponseEntity.ok().body("Tracking added");
     }
 
     @Override
-    public ResponseEntity<List<Tracking>> trackingGet(Integer limit){
-        List<Tracking> list = new ArrayList<>();
+    public ResponseEntity<List<TrackingDTO>> trackingGet(Integer limit){
+        List<TrackingDTO> list = new ArrayList<>();
         return ResponseEntity.ok().body(list);
     }
 
@@ -32,14 +32,14 @@ public class TrackingService implements TrackingApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Tracking> trackingIdGet(Long id){
-        Tracking t = new Tracking();
+    public ResponseEntity<TrackingDTO> trackingIdGet(Long id){
+        TrackingDTO t = new TrackingDTO();
         return ResponseEntity.ok().body(t);
     }
 
     @Override
-    public ResponseEntity<List<Tracking>> trackingForDeliveryIdGet(Long id){
-        List<Tracking> list = new ArrayList<>();
+    public ResponseEntity<List<TrackingDTO>> trackingForDeliveryIdGet(Long id){
+        List<TrackingDTO> list = new ArrayList<>();
         return ResponseEntity.ok().body(list);
     }
 }

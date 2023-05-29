@@ -1,6 +1,6 @@
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.models.Delivery;
+import com.example.infrastructure.models.DeliveryDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public interface DeliveriesApiDelegate {
      *         or unexpected error (status code 400)
      * @see DeliveriesApi#deliveriesGet
      */
-    default ResponseEntity<List<Delivery>> deliveriesGet(Integer limit) {
+    default ResponseEntity<List<DeliveryDTO>> deliveriesGet(Integer limit) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -63,7 +63,7 @@ public interface DeliveriesApiDelegate {
      *         or unexpected error (status code 400)
      * @see DeliveriesApi#deliveriesIdGet
      */
-    default ResponseEntity<Delivery> deliveriesIdGet(Long id) {
+    default ResponseEntity<DeliveryDTO> deliveriesIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -84,7 +84,7 @@ public interface DeliveriesApiDelegate {
      *         or unexpected error (status code 400)
      * @see DeliveriesApi#deliveriesPost
      */
-    default ResponseEntity<String> deliveriesPost(Delivery delivery) {
+    default ResponseEntity<String> deliveriesPost(DeliveryDTO delivery) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

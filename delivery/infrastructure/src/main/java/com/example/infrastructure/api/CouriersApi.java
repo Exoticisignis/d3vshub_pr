@@ -5,7 +5,7 @@
  */
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.models.Courier;
+import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.models.Error;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -36,15 +36,15 @@ public interface CouriersApi {
      * @return A list of couriers. (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "List all couriers", nickname = "couriersGet", notes = "", response = Courier.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "List all couriers", nickname = "couriersGet", notes = "", response = CourierDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of couriers.", response = Courier.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "A list of couriers.", response = CourierDTO.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/couriers",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Courier>> couriersGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
+    default ResponseEntity<List<CourierDTO>> couriersGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
         return getDelegate().couriersGet(limit);
     }
 
@@ -75,15 +75,15 @@ public interface CouriersApi {
      * @return Get courier by id (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "Get courier by id", nickname = "couriersIdGet", notes = "", response = Courier.class, tags={  })
+    @ApiOperation(value = "Get courier by id", nickname = "couriersIdGet", notes = "", response = CourierDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Get courier by id", response = Courier.class),
+        @ApiResponse(code = 200, message = "Get courier by id", response = CourierDTO.class),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/couriers/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Courier> couriersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
+    default ResponseEntity<CourierDTO> couriersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().couriersIdGet(id);
     }
 
@@ -102,7 +102,7 @@ public interface CouriersApi {
         value = "/couriers",
         produces = { "application/json" }
     )
-    default ResponseEntity<String> couriersPost(@RequestBody Courier courier) {
+    default ResponseEntity<String> couriersPost(@RequestBody CourierDTO courier) {
         return getDelegate().couriersPost(courier);
     }
 

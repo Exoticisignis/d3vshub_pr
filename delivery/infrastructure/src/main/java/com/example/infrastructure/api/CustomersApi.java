@@ -5,7 +5,7 @@
  */
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.models.Customer;
+import com.example.infrastructure.models.CustomerDTO;
 import com.example.infrastructure.models.Error;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -31,15 +31,15 @@ public interface CustomersApi {
      * @return A list of customers. (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "List all customers", nickname = "customersGet", notes = "", response = Customer.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "List all customers", nickname = "customersGet", notes = "", response = CustomerDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of customers.", response = Customer.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "A list of customers.", response = CustomerDTO.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/customers",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Customer>> customersGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
+    default ResponseEntity<List<CustomerDTO>> customersGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
         return getDelegate().customersGet(limit);
     }
 
@@ -70,15 +70,15 @@ public interface CustomersApi {
      * @return Get customer by id (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "Get customer by id", nickname = "customersIdGet", notes = "", response = Customer.class, tags={  })
+    @ApiOperation(value = "Get customer by id", nickname = "customersIdGet", notes = "", response = CustomerDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Get customer by id", response = Customer.class),
+        @ApiResponse(code = 200, message = "Get customer by id", response = CustomerDTO.class),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/customers/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Customer> customersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
+    default ResponseEntity<CustomerDTO> customersIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().customersIdGet(id);
     }
 
@@ -97,7 +97,7 @@ public interface CustomersApi {
         value = "/customers",
         produces = { "application/json" }
     )
-    default ResponseEntity<String> customersPost(@RequestBody Customer customer) {
+    default ResponseEntity<String> customersPost(@RequestBody CustomerDTO customer) {
         return getDelegate().customersPost(customer);
     }
 

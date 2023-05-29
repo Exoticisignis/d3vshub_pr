@@ -1,6 +1,6 @@
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.models.Item;
+import com.example.infrastructure.models.ItemDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public interface ItemsApiDelegate {
      *         or unexpected error (status code 400)
      * @see ItemsApi#itemsGet
      */
-    default ResponseEntity<List<Item>> itemsGet(Integer limit) {
+    default ResponseEntity<List<ItemDTO>> itemsGet(Integer limit) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -63,7 +63,7 @@ public interface ItemsApiDelegate {
      *         or unexpected error (status code 400)
      * @see ItemsApi#itemsIdGet
      */
-    default ResponseEntity<Item> itemsIdGet(Long id) {
+    default ResponseEntity<ItemDTO> itemsIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -84,12 +84,12 @@ public interface ItemsApiDelegate {
      *         or unexpected error (status code 400)
      * @see ItemsApi#itemsPost
      */
-    default ResponseEntity<String> itemsPost(Item item) {
+    default ResponseEntity<String> itemsPost(ItemDTO item) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
-    default ResponseEntity<List<Item>> itemsForOrderOrderIdGet(Integer orderId) {
+    default ResponseEntity<List<ItemDTO>> itemsForOrderOrderIdGet(Integer orderId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

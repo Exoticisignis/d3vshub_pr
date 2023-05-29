@@ -1,5 +1,6 @@
 package com.example.infrastructure.models;
 
+import com.example.infrastructure.entities.Courier;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +11,7 @@ import java.util.Objects;
  * Courier
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-16T17:35:02.597539500+02:00[Europe/Warsaw]")
-public class Courier   {
+public class CourierDTO   {
   @JsonProperty("id")
   private Long id;
 
@@ -32,7 +33,21 @@ public class Courier   {
   @JsonProperty("password")
   private String password;
 
-  public Courier id(Long id) {
+  public CourierDTO(){
+
+  }
+
+  public CourierDTO(Courier courier){
+    this.id = courier.getCourierId();
+    this.name = courier.getName();
+    this.surname = courier.getSurname();
+    this.phone = courier.getPhone();
+    this.login = courier.getLogin();
+    this.salt = courier.getSalt();
+    this.password = courier.getHashedPassword();
+  }
+
+  public CourierDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -53,7 +68,7 @@ public class Courier   {
     this.id = id;
   }
 
-  public Courier name(String name) {
+  public CourierDTO name(String name) {
     this.name = name;
     return this;
   }
@@ -74,7 +89,7 @@ public class Courier   {
     this.name = name;
   }
 
-  public Courier surname(String surname) {
+  public CourierDTO surname(String surname) {
     this.surname = surname;
     return this;
   }
@@ -95,7 +110,7 @@ public class Courier   {
     this.surname = surname;
   }
 
-  public Courier phone(String phone) {
+  public CourierDTO phone(String phone) {
     this.phone = phone;
     return this;
   }
@@ -116,7 +131,7 @@ public class Courier   {
     this.phone = phone;
   }
 
-  public Courier login(String login) {
+  public CourierDTO login(String login) {
     this.login = login;
     return this;
   }
@@ -137,7 +152,7 @@ public class Courier   {
     this.login = login;
   }
 
-  public Courier salt(String salt) {
+  public CourierDTO salt(String salt) {
     this.salt = salt;
     return this;
   }
@@ -158,7 +173,7 @@ public class Courier   {
     this.salt = salt;
   }
 
-  public Courier password(String password) {
+  public CourierDTO password(String password) {
     this.password = password;
     return this;
   }
@@ -188,7 +203,7 @@ public class Courier   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Courier courier = (Courier) o;
+    CourierDTO courier = (CourierDTO) o;
     return Objects.equals(this.id, courier.id) &&
         Objects.equals(this.name, courier.name) &&
         Objects.equals(this.surname, courier.surname) &&

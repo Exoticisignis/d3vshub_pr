@@ -6,7 +6,7 @@
 package com.example.infrastructure.api;
 
 import com.example.infrastructure.models.Error;
-import com.example.infrastructure.models.Item;
+import com.example.infrastructure.models.ItemDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -31,15 +31,15 @@ public interface ItemsApi {
      * @return A list of items. (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "List all items", nickname = "itemsGet", notes = "", response = Item.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "List all items", nickname = "itemsGet", notes = "", response = ItemDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of items.", response = Item.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "A list of items.", response = ItemDTO.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/items",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Item>> itemsGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
+    default ResponseEntity<List<ItemDTO>> itemsGet(@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
         return getDelegate().itemsGet(limit);
     }
 
@@ -70,15 +70,15 @@ public interface ItemsApi {
      * @return Get item by id (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "Get item by id", nickname = "itemsIdGet", notes = "", response = Item.class, tags={  })
+    @ApiOperation(value = "Get item by id", nickname = "itemsIdGet", notes = "", response = ItemDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Get item by id", response = Item.class),
+        @ApiResponse(code = 200, message = "Get item by id", response = ItemDTO.class),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
         value = "/items/{id}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Item> itemsIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
+    default ResponseEntity<ItemDTO> itemsIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().itemsIdGet(id);
     }
 
@@ -97,7 +97,7 @@ public interface ItemsApi {
         value = "/items",
         produces = { "application/json" }
     )
-    default ResponseEntity<String> itemsPost(@RequestBody Item item) {
+    default ResponseEntity<String> itemsPost(@RequestBody ItemDTO item) {
         return getDelegate().itemsPost(item);
     }
 
@@ -108,15 +108,15 @@ public interface ItemsApi {
      * @return A list of items for an order. (status code 200)
      *         or unexpected error (status code 400)
      */
-    @ApiOperation(value = "List all items for an order", nickname = "itemsForOrderOrderIdGet", notes = "", response = Item.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "List all items for an order", nickname = "itemsForOrderOrderIdGet", notes = "", response = ItemDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "A list of items for an order.", response = Item.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = "A list of items for an order.", response = ItemDTO.class, responseContainer = "List"),
             @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
             value = "/itemsForOrder/{orderId}",
             produces = { "application/json" }
     )
-    default ResponseEntity<List<Item>> itemsForOrderOrderIdGet(@ApiParam(value = "",required=true) @PathVariable("orderId") Integer orderId) {
+    default ResponseEntity<List<ItemDTO>> itemsForOrderOrderIdGet(@ApiParam(value = "",required=true) @PathVariable("orderId") Integer orderId) {
         return getDelegate().itemsForOrderOrderIdGet(orderId);
     }
 

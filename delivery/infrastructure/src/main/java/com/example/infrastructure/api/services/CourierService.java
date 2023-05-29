@@ -1,7 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.CouriersApiDelegate;
-import com.example.infrastructure.models.Courier;
+import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.repositories.CouriersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +20,13 @@ public class CourierService implements CouriersApiDelegate {
         return ResponseEntity.ok().body("TEST");
     }
     @Override
-    public ResponseEntity<String> couriersPost(Courier courier){
+    public ResponseEntity<String> couriersPost(CourierDTO courier){
         return ResponseEntity.ok().body("Courier added");
     }
 
     @Override
-    public ResponseEntity<List<Courier>> couriersGet(Integer limit){
-        List<Courier> list = new ArrayList<>();
+    public ResponseEntity<List<CourierDTO>> couriersGet(Integer limit){
+        List<CourierDTO> list = new ArrayList<>();
         return ResponseEntity.ok().body(list);
     }
 
@@ -36,8 +36,8 @@ public class CourierService implements CouriersApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Courier> couriersIdGet(Long id){
-        Courier courier = new Courier();
+    public ResponseEntity<CourierDTO> couriersIdGet(Long id){
+        CourierDTO courier = new CourierDTO();
         return ResponseEntity.ok().body(courier);
     }
 }
