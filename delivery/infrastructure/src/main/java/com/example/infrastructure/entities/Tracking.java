@@ -13,7 +13,7 @@ import java.time.Instant;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tracking {
+public class Tracking extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

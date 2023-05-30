@@ -18,7 +18,7 @@ import lombok.NonNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Courier {
+public class Courier extends BaseEntity{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "courier_id")
@@ -42,4 +42,18 @@ public class Courier {
 
     @NonNull
     private String login;
+
+    @Override
+    public String toString(){
+        return this.getName() + " " + this.getSurname();
+    }
+
+    public Courier(String value){
+        this.name = value;
+        this.surname = value;
+        this.phone = value;
+        this.salt = value;
+        this.login = value;
+        this.hashedPassword = value;
+    }
 }
