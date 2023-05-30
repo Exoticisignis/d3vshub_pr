@@ -33,19 +33,6 @@ public class CourierDTO   {
   @JsonProperty("password")
   private String password;
 
-  public CourierDTO(){
-
-  }
-
-  public CourierDTO(Courier courier){
-    this.id = courier.getCourierId();
-    this.name = courier.getName();
-    this.surname = courier.getSurname();
-    this.phone = courier.getPhone();
-    this.login = courier.getLogin();
-    this.salt = courier.getSalt();
-    this.password = courier.getHashedPassword();
-  }
 
   public CourierDTO id(Long id) {
     this.id = id;

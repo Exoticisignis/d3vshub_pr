@@ -23,7 +23,7 @@ public class OrderDTO   {
 
   @JsonProperty("orderItems")
   @Valid
-  private List<ItemDTO> orderItems = new ArrayList<>();
+  private List<String> orderItems = new ArrayList<>();
 
   @JsonProperty("orderDate")
   @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
@@ -77,12 +77,12 @@ public class OrderDTO   {
     this.customer = customer;
   }
 
-  public OrderDTO orderItems(List<ItemDTO> orderItems) {
+  public OrderDTO orderItems(List<String> orderItems) {
     this.orderItems = orderItems;
     return this;
   }
 
-  public OrderDTO addOrderItemsItem(ItemDTO orderItemsItem) {
+  public OrderDTO addOrderItemsItem(String orderItemsItem) {
     this.orderItems.add(orderItemsItem);
     return this;
   }
@@ -96,11 +96,11 @@ public class OrderDTO   {
 
   @Valid
 
-  public List<ItemDTO> getOrderItems() {
+  public List<String> getOrderItems() {
     return orderItems;
   }
 
-  public void setOrderItems(List<ItemDTO> orderItems) {
+  public void setOrderItems(List<String> orderItems) {
     this.orderItems = orderItems;
   }
 

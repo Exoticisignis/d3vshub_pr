@@ -27,15 +27,6 @@ public class DeliveryDTO   {
   @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime deliveryDate;
 
-  public DeliveryDTO(){
-
-  }
-
-  public DeliveryDTO(Delivery delivery){
-    this.id = delivery.getId();
-    this.order = delivery.getOrder().getOrderId();
-    this.courier = delivery.getCourier().getCourierId();
-  }
 
   public DeliveryDTO id(Long id) {
     this.id = id;

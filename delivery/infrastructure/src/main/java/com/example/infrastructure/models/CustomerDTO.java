@@ -36,17 +36,6 @@ public class CustomerDTO   {
   @JsonProperty("password")
   private String password;
 
-  public CustomerDTO(){
-
-  }
-
-  public CustomerDTO(Customer customer){
-    this.id = customer.getCustomerId();
-    this.name = customer.getName();
-    this.surname = customer.getSurname();
-    this.phone = customer.getPhone();
-    this.login = customer.getEmail();
-  }
 
   public CustomerDTO id(Long id) {
     this.id = id;

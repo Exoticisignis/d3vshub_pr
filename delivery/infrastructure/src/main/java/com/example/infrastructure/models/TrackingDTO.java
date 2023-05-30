@@ -31,15 +31,6 @@ public class TrackingDTO   {
   @JsonProperty("delivery")
   private Long delivery;
 
-  public TrackingDTO(){
-
-  }
-  public TrackingDTO(Tracking tracking){
-    this.id = tracking.getId();
-    this.status = tracking.getStatus();
-    this.location = tracking.getLocation();
-    this.updateTime = OffsetDateTime.ofInstant(tracking.getUpdateTime(), ZoneOffset.UTC);
-  }
 
   public TrackingDTO id(Long id) {
     this.id = id;
