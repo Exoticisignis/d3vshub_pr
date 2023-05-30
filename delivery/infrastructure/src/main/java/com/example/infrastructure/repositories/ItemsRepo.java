@@ -1,9 +1,9 @@
 package com.example.infrastructure.repositories;
 
 import com.example.infrastructure.entities.Item;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ItemsRepo extends CrudRepository<Item, Long> {
+public interface ItemsRepo extends JpaRepository<Item, Long> {
 }

@@ -1,6 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.CouriersApiDelegate;
+import com.example.infrastructure.entities.Courier;
 import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.repositories.CouriersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class CourierService implements CouriersApiDelegate {
     public ResponseEntity<String> temp(){
         return ResponseEntity.ok().body("TEST");
     }
+
     @Override
     public ResponseEntity<String> couriersPost(CourierDTO courier){
         return ResponseEntity.ok().body("Courier added");

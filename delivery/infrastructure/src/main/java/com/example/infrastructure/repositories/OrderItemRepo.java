@@ -1,9 +1,9 @@
 package com.example.infrastructure.repositories;
 
 import com.example.infrastructure.entities.OrderItem;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderItemRepo extends CrudRepository<OrderItem, Long> {
+public interface OrderItemRepo extends JpaRepository<OrderItem, Long> {
 }
