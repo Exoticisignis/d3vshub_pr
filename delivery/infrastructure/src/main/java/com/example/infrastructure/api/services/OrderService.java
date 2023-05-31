@@ -1,6 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.OrdersApiDelegate;
+import com.example.infrastructure.entities.Item;
 import com.example.infrastructure.entities.Order;
 import com.example.infrastructure.entities.OrderItem;
 import com.example.infrastructure.mappers.OrderDTOMapper;
@@ -27,11 +28,21 @@ public class OrderService implements OrdersApiDelegate {
     private OrderItemRepo orderItems;
     @Autowired
     private CustomersRepo customers;
+    @Autowired
+    private ItemService itemService;
 
     @Override
+    @Transactional
     public ResponseEntity<String> ordersPost(OrderDTO order){
         if (order != null){
             Order o = OrderDTOMapper.DTOtoEntity(order);
+            for (OrderItem oI : o.getOrderItems()) {
+                Item i = oI.getItem();
+                int quantity = oI.getQuantity();
+                int result = itemService.getItemForOrder(i.getItemId(), quantity);
+                if (result == -1)
+                    return ResponseEntity.badRequest().body("Unavailable amount of item: " + i.getItemName());
+            }
             orders.save(o);
             return ResponseEntity.ok().body("Order added");
         }

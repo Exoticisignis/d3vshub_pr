@@ -25,6 +25,19 @@ public class ItemService implements ItemsApiDelegate {
     @Autowired
     private OrdersRepo orders;
 
+    @Transactional
+    public int getItemForOrder(Long id, int quantity){
+        Item i = items.getReferenceById(id);
+        int newQuantity = i.getQuantity() - quantity;
+        if (newQuantity > 0){
+            i.setQuantity(newQuantity);
+            return 0;
+        }
+        else {
+            return -1;
+        }
+    }
+
     @Override
     public ResponseEntity<String> itemsPost(ItemDTO item){
         if (item != null){
