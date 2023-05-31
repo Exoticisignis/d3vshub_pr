@@ -21,10 +21,12 @@ public class Delivery extends BaseEntity{
     private Long id;
 
     @ManyToOne
+    @MapsId("orderId")
     @JoinColumn(name = "order_id")
     private Order order;
 
     @ManyToOne
+    @MapsId("courierId")
     @JoinColumn(name = "courier_id")
     private Courier courier;
 

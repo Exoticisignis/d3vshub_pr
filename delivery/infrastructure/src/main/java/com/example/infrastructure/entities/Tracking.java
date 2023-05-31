@@ -31,6 +31,7 @@ public class Tracking extends BaseEntity{
     private Instant updateTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("id")
     @JoinColumn(name = "delivery_id", referencedColumnName = "delivery_id")
     private Delivery delivery;
 }
