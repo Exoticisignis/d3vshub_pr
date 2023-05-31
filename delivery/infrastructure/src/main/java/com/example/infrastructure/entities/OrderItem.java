@@ -1,5 +1,6 @@
 package com.example.infrastructure.entities;
 
+import com.example.infrastructure.models.OrderDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
@@ -12,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "order_items")
@@ -35,4 +38,16 @@ public class OrderItem extends BaseEntity{
 
     @Column(name = "quantity")
     private int quantity;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        OrderItem item = (OrderItem) o;
+        return Objects.equals(this.order, item.order) && Objects.equals(this.item, item.item);
+    }
 }
