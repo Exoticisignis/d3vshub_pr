@@ -14,6 +14,9 @@ public class ItemDTO   {
   @JsonProperty("id")
   private Long id;
 
+  @JsonProperty("name")
+  private String name;
+
   @JsonProperty("price")
   private Double price;
 
@@ -52,6 +55,29 @@ public class ItemDTO   {
   public void setId(Long id) {
     this.id = id;
   }
+
+  public ItemDTO name(String name){
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
 
   public ItemDTO price(Double price) {
     this.price = price;
@@ -200,7 +226,7 @@ public class ItemDTO   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, price, quantity, category, imageUrl, description, allergenInfo);
+    return Objects.hash(id, name, price, quantity, category, imageUrl, description, allergenInfo);
   }
 
   @Override
@@ -209,6 +235,7 @@ public class ItemDTO   {
     sb.append("class Item {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
