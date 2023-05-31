@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ItemsRepo extends JpaRepository<Item, Long> {
+    //@Query("select i from Role i where i.name = :roleName")
+    Item findByName(String name);
 }
