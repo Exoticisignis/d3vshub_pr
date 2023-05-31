@@ -1,6 +1,8 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.CustomersApiDelegate;
+import com.example.infrastructure.entities.Customer;
+import com.example.infrastructure.mappers.CustomerDTOMapper;
 import com.example.infrastructure.models.CustomerDTO;
 import com.example.infrastructure.repositories.CustomersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +19,43 @@ public class CustomerService implements CustomersApiDelegate {
 
     @Override
     public ResponseEntity<String> customersPost(CustomerDTO customer){
-        return ResponseEntity.ok().body("Customer added");
+        if (customer != null){
+            Customer c = CustomerDTOMapper.DTOtoEntity(customer);
+            customers.save(c);
+            return ResponseEntity.ok().body("Customer added");
+        }
+        return ResponseEntity.badRequest().body("Null object for customers POST request");
     }
 
     @Override
     public ResponseEntity<List<CustomerDTO>> customersGet(Integer limit){
-        List<CustomerDTO> list = new ArrayList<>();
-        return ResponseEntity.ok().body(list);
+        if(limit > 0){
+            List<CustomerDTO> result = new ArrayList<>();
+            List<Customer> list = customers.getNCustomers(limit);
+            for (Customer c : list){
+                result.add(CustomerDTOMapper.customerToDTO(c));
+            }
+            return ResponseEntity.ok().body(result);
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @Override
     public ResponseEntity<String> customersIdDelete(Long id){
-        return ResponseEntity.ok().body("Customer deleted");
+        if(customers.existsById(id)){
+            customers.deleteById(id);
+            return ResponseEntity.ok().body("Customer deleted");
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @Override
     public ResponseEntity<CustomerDTO> customersIdGet(Long id){
-        CustomerDTO c = new CustomerDTO();
-        return ResponseEntity.ok().body(c);
+        if(customers.existsById(id)){
+            Customer c = customers.getReferenceById(id);
+            CustomerDTO customer = CustomerDTOMapper.customerToDTO(c);
+            return ResponseEntity.ok().body(customer);
+        }
+        return ResponseEntity.notFound().build();
     }
 }

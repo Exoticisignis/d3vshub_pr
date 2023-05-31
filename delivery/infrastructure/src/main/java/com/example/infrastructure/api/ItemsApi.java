@@ -116,7 +116,7 @@ public interface ItemsApi {
             value = "/itemsForOrder/{orderId}",
             produces = { "application/json" }
     )
-    default ResponseEntity<List<ItemDTO>> itemsForOrderOrderIdGet(@ApiParam(value = "",required=true) @PathVariable("orderId") Integer orderId) {
+    default ResponseEntity<List<ItemDTO>> itemsForOrderOrderIdGet(@ApiParam(value = "",required=true) @PathVariable("orderId") Long orderId) {
         return getDelegate().itemsForOrderOrderIdGet(orderId);
     }
 

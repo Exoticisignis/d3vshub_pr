@@ -115,7 +115,7 @@ public interface TrackingApi {
             value = "/trackingForDelivery/{id}",
             produces = { "application/json" }
     )
-    default ResponseEntity<List<TrackingDTO>> trackingForDeliveryIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
+    default ResponseEntity<TrackingDTO> trackingForDeliveryIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Long id) {
         return getDelegate().trackingForDeliveryIdGet(id);
     }
 

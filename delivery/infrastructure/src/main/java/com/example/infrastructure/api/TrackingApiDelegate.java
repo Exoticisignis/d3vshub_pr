@@ -88,7 +88,7 @@ public interface TrackingApiDelegate {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
-    default ResponseEntity<List<TrackingDTO>> trackingForDeliveryIdGet(Long id) {
+    default ResponseEntity<TrackingDTO> trackingForDeliveryIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

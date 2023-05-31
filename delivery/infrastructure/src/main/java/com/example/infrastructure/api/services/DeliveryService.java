@@ -1,6 +1,8 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.DeliveriesApiDelegate;
+import com.example.infrastructure.entities.Delivery;
+import com.example.infrastructure.mappers.DeliveryDTOMapper;
 import com.example.infrastructure.models.DeliveryDTO;
 import com.example.infrastructure.repositories.DeliveriesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +19,43 @@ public class DeliveryService implements DeliveriesApiDelegate {
 
     @Override
     public ResponseEntity<String> deliveriesPost(DeliveryDTO delivery){
-        return ResponseEntity.ok().body("Delivery added");
+        if (delivery != null){
+            Delivery d = DeliveryDTOMapper.DTOtoEntity(delivery);
+            deliveries.save(d);
+            return ResponseEntity.ok().body("Delivery added");
+        }
+        return ResponseEntity.badRequest().body("Null object for deliveries POST request");
     }
 
     @Override
     public ResponseEntity<List<DeliveryDTO>>  deliveriesGet(Integer limit){
-        List<DeliveryDTO> list = new ArrayList<>();
-        return ResponseEntity.ok().body(list);
+        if(limit > 0){
+            List<DeliveryDTO> result = new ArrayList<>();
+            List<Delivery> list = deliveries.getNDeliveries(limit);
+            for (Delivery d : list){
+                result.add(DeliveryDTOMapper.deliveryToDTO(d));
+            }
+            return ResponseEntity.ok().body(result);
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @Override
     public ResponseEntity<String> deliveriesIdDelete(Long id){
-        return ResponseEntity.ok().body("Delivery deleted");
+        if(deliveries.existsById(id)){
+            deliveries.deleteById(id);
+            return ResponseEntity.ok().body("Delivery deleted");
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @Override
     public ResponseEntity<DeliveryDTO> deliveriesIdGet(Long id){
-        DeliveryDTO d = new DeliveryDTO();
-        return ResponseEntity.ok().body(d);
+        if(deliveries.existsById(id)){
+            Delivery entity = deliveries.getReferenceById(id);
+            DeliveryDTO dto = DeliveryDTOMapper.deliveryToDTO(entity);
+            return ResponseEntity.ok().body(dto);
+        }
+        return ResponseEntity.notFound().build();
     }
 }

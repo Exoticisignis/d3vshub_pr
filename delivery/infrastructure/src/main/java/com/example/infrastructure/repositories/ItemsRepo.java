@@ -9,9 +9,10 @@ import java.util.List;
 
 @Repository
 public interface ItemsRepo extends JpaRepository<Item, Long> {
-    //@Query("select i from items i where i.name = :name")
+    //@Query("SELECT * FROM items WHERE item_name = :name")
     Item findByName(String name);
 
     @Query("SELECT * FROM items LIMIT :n")
     public List<Item> getNItems(int n);
+
 }

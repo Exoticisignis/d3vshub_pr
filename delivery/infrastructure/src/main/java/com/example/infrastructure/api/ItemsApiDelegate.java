@@ -89,7 +89,7 @@ public interface ItemsApiDelegate {
 
     }
 
-    default ResponseEntity<List<ItemDTO>> itemsForOrderOrderIdGet(Integer orderId) {
+    default ResponseEntity<List<ItemDTO>> itemsForOrderOrderIdGet(Long orderId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
