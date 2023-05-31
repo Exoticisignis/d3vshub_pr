@@ -11,6 +11,7 @@ import com.example.infrastructure.repositories.OrdersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,7 @@ public class ItemService implements ItemsApiDelegate {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<String> itemsIdDelete(Long id){
         if(items.existsById(id)){
             items.deleteById(id);

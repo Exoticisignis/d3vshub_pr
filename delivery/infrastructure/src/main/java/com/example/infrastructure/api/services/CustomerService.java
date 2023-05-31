@@ -8,6 +8,7 @@ import com.example.infrastructure.repositories.CustomersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class CustomerService implements CustomersApiDelegate {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<String> customersIdDelete(Long id){
         if(customers.existsById(id)){
             customers.deleteById(id);
