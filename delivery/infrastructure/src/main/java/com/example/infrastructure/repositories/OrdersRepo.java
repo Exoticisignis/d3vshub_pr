@@ -11,4 +11,7 @@ import java.util.List;
 public interface OrdersRepo extends JpaRepository<Order, Long> {
     @Query("SELECT * FROM orders LIMIT :n")
     public List<Order> getNOrders(int n);
+
+    @Query("SELECT * FROM orders WHERE customer_id = :id")
+    public List<Order> getOrdersForCustomerId(Long id);
 }

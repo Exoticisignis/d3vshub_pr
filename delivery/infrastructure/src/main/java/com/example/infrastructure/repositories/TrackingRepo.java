@@ -12,4 +12,7 @@ import java.util.List;
 public interface TrackingRepo extends JpaRepository<Tracking, Long> {
     @Query("SELECT * FROM tracking LIMIT :n")
     public List<Tracking> getNTracking(int n);
+
+    @Query("SELECT * FROM tracking WHERE delivery_id = :id")
+    public Tracking getTrackingForDeliveryId(Long id);
 }
