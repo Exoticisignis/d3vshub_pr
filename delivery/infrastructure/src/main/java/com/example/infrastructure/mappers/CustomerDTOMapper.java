@@ -16,4 +16,17 @@ public class CustomerDTOMapper {
         dto.setPassword(c.getHashedPassword());
         return dto;
     }
+
+
+    public static Customer DTOtoEntity(CustomerDTO dto){
+        Customer c = new Customer();
+        c.setName(dto.getName());
+        c.setSurname(dto.getSurname());
+        c.setAddress(dto.getAddress());
+        c.setEmail(dto.getLogin());
+        c.setPhone(dto.getPhone());
+        c.setSalt(dto.getSalt());
+        c.setHashedPassword(dto.getPassword());
+        return c;
+    }
 }

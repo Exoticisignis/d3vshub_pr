@@ -19,4 +19,14 @@ public class CourierDTOMapper {
         return dto;
     }
 
+    public static Courier DTOtoEntity(CourierDTO dto){
+        Courier c = new Courier();
+        c.setName(dto.getName());
+        c.setSurname(dto.getSurname());
+        c.setLogin(dto.getLogin());
+        c.setSalt(dto.getSalt());
+        c.setHashedPassword(dto.getPassword());
+        return c;
+    }
+
 }
