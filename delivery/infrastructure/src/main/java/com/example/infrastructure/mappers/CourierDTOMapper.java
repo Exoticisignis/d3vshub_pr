@@ -26,6 +26,7 @@ public class CourierDTOMapper {
         c.setLogin(dto.getLogin());
         c.setSalt(dto.getSalt());
         c.setHashedPassword(dto.getPassword());
+        c.setPhone(dto.getPhone());
         return c;
     }
 
