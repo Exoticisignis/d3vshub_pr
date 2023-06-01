@@ -31,6 +31,7 @@ public class ItemService implements ItemsApiDelegate {
         int newQuantity = i.getQuantity() - quantity;
         if (newQuantity > 0){
             i.setQuantity(newQuantity);
+            items.saveAndFlush(i);
             return 0;
         }
         else {
