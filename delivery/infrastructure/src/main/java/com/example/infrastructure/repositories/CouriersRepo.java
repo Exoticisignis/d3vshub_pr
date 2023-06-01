@@ -11,6 +11,10 @@ import java.util.List;
 
 @Repository
 public interface CouriersRepo extends JpaRepository<Courier, Long> {
+
     @Query("select c from Courier c order by c.courierId asc limit :n")
     public List<Courier> getNCouriers(@Param("n") int n);
+
+    @Query("select case when count(c)> 0 then true else false end from Courier c where c.login = :login")
+    boolean existsByLogin(@Param("login") String login);
 }

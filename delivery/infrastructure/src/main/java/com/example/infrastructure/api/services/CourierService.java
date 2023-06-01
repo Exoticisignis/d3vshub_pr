@@ -27,6 +27,8 @@ public class CourierService implements CouriersApiDelegate {
     @Override
     public ResponseEntity<String> couriersPost(CourierDTO courier){
         if (courier != null){
+            if (couriersRepo.existsByLogin(courier.getLogin()))
+                return ResponseEntity.badRequest().body("Courier with this login already exists");
             String hPassword = PasswordHasher.hashPassword(courier.getPassword(), courier.getSalt());
             Courier c = CourierDTOMapper.DTOtoEntity(courier);
             c.setHashedPassword(hPassword);

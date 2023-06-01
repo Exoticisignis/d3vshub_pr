@@ -13,4 +13,7 @@ public interface CustomersRepo extends JpaRepository<Customer, Long> {
 
     @Query("select c from Customer c order by c.customerId asc limit :n")
     public List<Customer> getNCustomers(@Param("n")int n);
+
+    @Query("select case when count(c)> 0 then true else false end from Customer c where c.email = :email")
+    boolean existsByEmail(@Param("email") String email);
 }

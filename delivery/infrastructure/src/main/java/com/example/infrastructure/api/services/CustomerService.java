@@ -22,6 +22,8 @@ public class CustomerService implements CustomersApiDelegate {
     @Override
     public ResponseEntity<String> customersPost(CustomerDTO customer){
         if (customer != null){
+            if (customers.existsByEmail(customer.getLogin()))
+                return ResponseEntity.badRequest().body("Customer with this email already exists");
             String hPassword = PasswordHasher.hashPassword(customer.getPassword(), customer.getSalt());
             Customer c = CustomerDTOMapper.DTOtoEntity(customer);
             c.setHashedPassword(hPassword);
