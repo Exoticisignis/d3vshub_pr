@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Customers (
     surname VARCHAR(50),
     address VARCHAR(100),
     phone VARCHAR(20),
-    email VARCHAR(50),
+    email VARCHAR(50) UNIQUE,
     salt VARCHAR(64),
     hashed_password VARCHAR(64)
 );
