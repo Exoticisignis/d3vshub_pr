@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS Tracking (
+    uuid VARCHAR(255),
     tracking_id SERIAL PRIMARY KEY UNIQUE,
     delivery_id BIGINT,
     location VARCHAR(100),

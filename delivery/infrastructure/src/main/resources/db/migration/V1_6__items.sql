@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS Items (
+    uuid VARCHAR(255),
     item_id SERIAL PRIMARY KEY UNIQUE,
     item_name VARCHAR(50),
     price DECIMAL(10,2),

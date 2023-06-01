@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS Customers (
+    uuid VARCHAR(255),
     customer_id SERIAL PRIMARY KEY UNIQUE,
     name VARCHAR(50),
     surname VARCHAR(50),

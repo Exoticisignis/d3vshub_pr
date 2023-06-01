@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS Deliveries (
+    uuid VARCHAR(255),
     delivery_id SERIAL PRIMARY KEY UNIQUE,
     order_id INT,
     courier_id INT,

@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS Orders (
+    uuid VARCHAR(255),
     order_id SERIAL PRIMARY KEY UNIQUE,
     customer_id BIGINT,
     order_date TIMESTAMP,

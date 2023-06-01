@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS Order_Items (
+    uuid VARCHAR(255),
     order_id BIGINT,
     item_id BIGINT,
     quantity INT,
