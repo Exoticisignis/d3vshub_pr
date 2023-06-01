@@ -5,6 +5,7 @@ import com.example.infrastructure.entities.Customer;
 import com.example.infrastructure.mappers.CustomerDTOMapper;
 import com.example.infrastructure.models.CustomerDTO;
 import com.example.infrastructure.repositories.CustomersRepo;
+import com.example.infrastructure.security.PasswordHasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,9 @@ public class CustomerService implements CustomersApiDelegate {
     @Override
     public ResponseEntity<String> customersPost(CustomerDTO customer){
         if (customer != null){
+            String hPassword = PasswordHasher.hashPassword(customer.getPassword(), customer.getSalt());
             Customer c = CustomerDTOMapper.DTOtoEntity(customer);
+            c.setHashedPassword(hPassword);
             customers.save(c);
             return ResponseEntity.ok().body("Customer added");
         }

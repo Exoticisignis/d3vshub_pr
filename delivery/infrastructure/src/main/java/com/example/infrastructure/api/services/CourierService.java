@@ -5,6 +5,7 @@ import com.example.infrastructure.entities.Courier;
 import com.example.infrastructure.mappers.CourierDTOMapper;
 import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.repositories.CouriersRepo;
+import com.example.infrastructure.security.PasswordHasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,9 @@ public class CourierService implements CouriersApiDelegate {
     @Override
     public ResponseEntity<String> couriersPost(CourierDTO courier){
         if (courier != null){
+            String hPassword = PasswordHasher.hashPassword(courier.getPassword(), courier.getSalt());
             Courier c = CourierDTOMapper.DTOtoEntity(courier);
+            c.setHashedPassword(hPassword);
             couriersRepo.save(c);
             return ResponseEntity.ok().body("Courier added");
         }
