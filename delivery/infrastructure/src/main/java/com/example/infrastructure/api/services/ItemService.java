@@ -29,7 +29,7 @@ public class ItemService implements ItemsApiDelegate {
     public int getItemForOrder(Long id, int quantity){
         Item i = items.getReferenceById(id);
         int newQuantity = i.getQuantity() - quantity;
-        if (newQuantity > 0){
+        if (newQuantity >= 0){
             i.setQuantity(newQuantity);
             items.saveAndFlush(i);
             return 0;
