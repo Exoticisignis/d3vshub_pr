@@ -6,7 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "deliveries")
@@ -30,8 +33,7 @@ public class Delivery extends BaseEntity{
     @JoinColumn(name = "courier_id")
     private Courier courier;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "delivery_date")
-    private Instant deliveryDate;
+    private Timestamp deliveryDate;
 
 }

@@ -11,7 +11,7 @@ public class DeliveryMapper implements RowMapper<Delivery> {
     public Delivery mapRow(ResultSet rs, int rowNum) throws SQLException {
         Delivery d = new Delivery();
         d.setId(rs.getLong("delivery_id"));
-        d.setDeliveryDate(rs.getTimestamp("delivery_date").toInstant());
+        d.setDeliveryDate(rs.getTimestamp("delivery_date"));
         d.setCourier(new CourierMapper().mapRow(rs, rowNum));
         d.setOrder(new OrderMapper().mapRow(rs, rowNum));
         return d;

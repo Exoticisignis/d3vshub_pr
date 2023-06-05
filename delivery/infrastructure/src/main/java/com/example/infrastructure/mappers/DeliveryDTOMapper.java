@@ -8,31 +8,24 @@ import com.example.infrastructure.repositories.CouriersRepo;
 import com.example.infrastructure.repositories.OrdersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
 public class DeliveryDTOMapper {
-    @Autowired
-    public static OrdersRepo orders;
-    @Autowired
-    public static CouriersRepo couriers;
 
     public static DeliveryDTO deliveryToDTO(Delivery d){
         DeliveryDTO dto =  new DeliveryDTO();
         dto.setId(d.getId());
         dto.setCourier(d.getCourier().getCourierId());
         dto.setOrder(d.getOrder().getOrderId());
-        dto.setDeliveryDate(OffsetDateTime.ofInstant(d.getDeliveryDate(), ZoneOffset.UTC));
+        dto.setDeliveryDate(d.getDeliveryDate().toString());
         return dto;
     }
 
     public static Delivery DTOtoEntity(DeliveryDTO dto){
         Delivery d = new Delivery();
-        d.setDeliveryDate(dto.getDeliveryDate().toInstant());
-        Order o = orders.getReferenceById(dto.getOrder());
-        d.setOrder(o);
-        Courier c = couriers.getReferenceById(dto.getCourier());
-        d.setCourier(c);
+        d.setDeliveryDate(Timestamp.valueOf(dto.getDeliveryDate()));
         return d;
     }
 }

@@ -12,4 +12,7 @@ import java.util.List;
 public interface DeliveriesRepo extends JpaRepository<Delivery, Long> {
     @Query("select d from Delivery d order by d.id asc limit :n")
     public List<Delivery> getNDeliveries(@Param("n") int n);
+
+    @Query("select count(*) from Delivery")
+    int getNumberOfRows();
 }

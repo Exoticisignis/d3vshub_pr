@@ -6,7 +6,6 @@ import com.example.infrastructure.entities.OrderItem;
 import com.example.infrastructure.models.OrderDTO;
 import com.example.infrastructure.repositories.CustomersRepo;
 import com.example.infrastructure.repositories.ItemsRepo;
-import com.example.infrastructure.repositories.OrderItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.OffsetDateTime;

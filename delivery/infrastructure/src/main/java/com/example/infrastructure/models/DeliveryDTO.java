@@ -6,6 +6,9 @@ import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.NotNull;
 
 import javax.validation.Valid;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
@@ -24,8 +27,7 @@ public class DeliveryDTO   {
   private Long courier;
 
   @JsonProperty("deliveryDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime deliveryDate;
+  private String deliveryDate;
 
 
   public DeliveryDTO id(Long id) {
@@ -91,7 +93,7 @@ public class DeliveryDTO   {
     this.courier = courier;
   }
 
-  public DeliveryDTO deliveryDate(OffsetDateTime deliveryDate) {
+  public DeliveryDTO deliveryDate(String deliveryDate) {
     this.deliveryDate = deliveryDate;
     return this;
   }
@@ -105,11 +107,11 @@ public class DeliveryDTO   {
 
   @Valid
 
-  public OffsetDateTime getDeliveryDate() {
+  public String getDeliveryDate() {
     return deliveryDate;
   }
 
-  public void setDeliveryDate(OffsetDateTime deliveryDate) {
+  public void setDeliveryDate(String deliveryDate) {
     this.deliveryDate = deliveryDate;
   }
 
