@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
@@ -26,9 +27,8 @@ public class Tracking extends BaseEntity{
     @Column(name = "location")
     private String location;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "update_time")
-    private Instant updateTime;
+    @Column(name = "update_date")
+    private Timestamp updateTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("id")

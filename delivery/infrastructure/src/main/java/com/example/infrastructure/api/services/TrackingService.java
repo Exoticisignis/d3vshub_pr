@@ -1,6 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.TrackingApiDelegate;
+import com.example.infrastructure.entities.Delivery;
 import com.example.infrastructure.entities.Tracking;
 import com.example.infrastructure.mappers.TrackingDTOMapper;
 import com.example.infrastructure.models.TrackingDTO;
@@ -25,6 +26,8 @@ public class TrackingService implements TrackingApiDelegate {
     public ResponseEntity<String> trackingPost(TrackingDTO tracking){
         if (tracking != null){
             Tracking t = TrackingDTOMapper.DTOtoEntity(tracking);
+            Delivery d = deliveries.getReferenceById(tracking.getDelivery());
+            t.setDelivery(d);
             trackingRepo.save(t);
             return ResponseEntity.ok().body("Tracking added");
         }

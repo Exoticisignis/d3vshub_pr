@@ -25,8 +25,7 @@ public class TrackingDTO   {
   private String location;
 
   @JsonProperty("updateTime")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime updateTime;
+  private String updateTime;
 
   @JsonProperty("delivery")
   private Long delivery;
@@ -95,7 +94,7 @@ public class TrackingDTO   {
     this.location = location;
   }
 
-  public TrackingDTO updateTime(OffsetDateTime updateTime) {
+  public TrackingDTO updateTime(String updateTime) {
     this.updateTime = updateTime;
     return this;
   }
@@ -109,11 +108,11 @@ public class TrackingDTO   {
 
   @Valid
 
-  public OffsetDateTime getUpdateTime() {
+  public String getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(OffsetDateTime updateTime) {
+  public void setUpdateTime(String updateTime) {
     this.updateTime = updateTime;
   }
 
