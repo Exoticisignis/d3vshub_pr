@@ -19,8 +19,6 @@ public class OrderDTOMapper {
     public static CustomersRepo customers;
     @Autowired
     public static ItemsRepo items;
-    @Autowired
-    public static OrderItemRepo orderItemsRepo;
 
     public static OrderDTO orderToDTO(Order o){
         OrderDTO dto = new OrderDTO();
@@ -60,8 +58,6 @@ public class OrderDTOMapper {
             }
         }
         o.setOrderItems(orderItems);
-        for (OrderItem oI: orderItems)
-            orderItemsRepo.save(oI);
         return o;
     }
 }

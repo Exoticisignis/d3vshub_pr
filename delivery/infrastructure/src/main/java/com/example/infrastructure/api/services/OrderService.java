@@ -47,6 +47,8 @@ public class OrderService implements OrdersApiDelegate {
                 price+=itemPrice;
             }
             o.setTotalPrice(price);
+            for (OrderItem oI: o.getOrderItems())
+                orderItems.save(oI);
             orders.save(o);
             return ResponseEntity.ok().body("Order added");
         }
