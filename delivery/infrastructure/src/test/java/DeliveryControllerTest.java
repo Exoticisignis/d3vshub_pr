@@ -1,11 +1,7 @@
 import com.example.infrastructure.Application;
 import com.example.infrastructure.entities.*;
-import com.example.infrastructure.mappers.CourierDTOMapper;
 import com.example.infrastructure.mappers.DeliveryDTOMapper;
-import com.example.infrastructure.mappers.ItemDTOMapper;
-import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.models.DeliveryDTO;
-import com.example.infrastructure.models.ItemDTO;
 import com.example.infrastructure.repositories.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -41,10 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class DeliveryControllerTest {
     @Autowired
     private DeliveriesRepo deliveries;
-    @Autowired
-    private CouriersRepo couriers;
-    @Autowired
-    private OrdersRepo orders;
+
 
     @Autowired
     private MockMvc mockMvc;
