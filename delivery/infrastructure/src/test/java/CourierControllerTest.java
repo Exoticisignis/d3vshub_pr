@@ -32,7 +32,7 @@ public class CourierControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @Test
-    public void shouldReturnCustomerDTO() throws Exception{
+    public void shouldReturnCourierDTO() throws Exception{
         //given
         Courier c = new Courier("Test");
         couriers.save(c);
