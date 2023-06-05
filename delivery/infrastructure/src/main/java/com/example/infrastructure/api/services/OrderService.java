@@ -1,6 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.OrdersApiDelegate;
+import com.example.infrastructure.entities.Customer;
 import com.example.infrastructure.entities.Item;
 import com.example.infrastructure.entities.Order;
 import com.example.infrastructure.entities.OrderItem;
@@ -25,7 +26,7 @@ public class OrderService implements OrdersApiDelegate {
     @Autowired
     private ItemsRepo itemsRepo;
     @Autowired
-    private OrderItemRepo orderItems;
+    private OrderItemRepo orderItemsRepo;
     @Autowired
     private CustomersRepo customers;
     @Autowired
@@ -34,10 +35,14 @@ public class OrderService implements OrdersApiDelegate {
     @Override
     @Transactional
     public ResponseEntity<String> ordersPost(OrderDTO order){
+        //totalPrice is recalculated because I don't trust frontend dev
         if (order != null){
             Order o = OrderDTOMapper.DTOtoEntity(order);
+            Customer c = customers.getReferenceById(order.getCustomer());
+            o.setCustomer(c);
             double price = 0;
-            for (OrderItem oI : o.getOrderItems()) {
+            List<OrderItem> orderItems = listItemsToOrderItems(order.getOrderItems());
+            for (OrderItem oI : orderItems) {
                 Item i = oI.getItem();
                 int quantity = oI.getQuantity();
                 int result = itemService.getItemForOrder(i.getItemId(), quantity);
@@ -47,12 +52,32 @@ public class OrderService implements OrdersApiDelegate {
                 price+=itemPrice;
             }
             o.setTotalPrice(price);
-            for (OrderItem oI: o.getOrderItems())
-                orderItems.save(oI);
-            orders.save(o);
+            orders.saveAndFlush(o);
+            for (OrderItem oI: o.getOrderItems()) {
+                oI.setOrder(o);
+                orderItemsRepo.save(oI);
+            }
             return ResponseEntity.ok().body("Order added");
         }
         return ResponseEntity.badRequest().body("Null object for orders POST request");
+    }
+    public List<OrderItem> listItemsToOrderItems(List<String> list){
+        List<OrderItem> orderItems = new ArrayList<>();
+        for (String name : list){
+            OrderItem orderItem = new OrderItem();
+            orderItem.setItem(itemsRepo.findByName(name));
+            if (orderItems.contains(orderItem)){
+                //index variable is used to keep code readable
+                int index = orderItems.indexOf(orderItem);
+                //if orderItems contains item for this order, change quantity of item for order
+                orderItems.get(index).setQuantity(orderItem.getQuantity()+1);
+            }
+            else{
+                orderItem.setQuantity(1);
+                orderItems.add(orderItem);
+            }
+        }
+        return orderItems;
     }
 
     @Override
@@ -104,7 +129,7 @@ public class OrderService implements OrdersApiDelegate {
     @Override
     public ResponseEntity<List<OrderDTO>> ordersForItemIdGet(Long id){
         if(itemsRepo.existsById(id)){
-            List<OrderItem> orderItemsList = orderItems.getOrdersForItemId(id);
+            List<OrderItem> orderItemsList = orderItemsRepo.getOrdersForItemId(id);
             List<OrderDTO> dtoList = new ArrayList<>();
             for (OrderItem oI : orderItemsList){
                 dtoList.add(OrderDTOMapper.orderToDTO(oI.getOrder()));

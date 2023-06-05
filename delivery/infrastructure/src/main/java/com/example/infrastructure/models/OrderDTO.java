@@ -26,8 +26,7 @@ public class OrderDTO   {
   private List<String> orderItems = new ArrayList<>();
 
   @JsonProperty("orderDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime orderDate;
+  private String orderDate;
 
   @JsonProperty("totalPrice")
   private Double totalPrice;
@@ -104,7 +103,7 @@ public class OrderDTO   {
     this.orderItems = orderItems;
   }
 
-  public OrderDTO orderDate(OffsetDateTime orderDate) {
+  public OrderDTO orderDate(String orderDate) {
     this.orderDate = orderDate;
     return this;
   }
@@ -118,11 +117,11 @@ public class OrderDTO   {
 
   @Valid
 
-  public OffsetDateTime getOrderDate() {
+  public String getOrderDate() {
     return orderDate;
   }
 
-  public void setOrderDate(OffsetDateTime orderDate) {
+  public void setOrderDate(String orderDate) {
     this.orderDate = orderDate;
   }
 

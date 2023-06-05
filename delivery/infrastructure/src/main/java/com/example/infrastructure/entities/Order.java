@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
 
@@ -28,9 +29,8 @@ public class Order extends BaseEntity{
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "order_date")
-    private Instant orderDate;
+    private Timestamp orderDate;
 
     @Column(name = "total_price")
     private double totalPrice;
