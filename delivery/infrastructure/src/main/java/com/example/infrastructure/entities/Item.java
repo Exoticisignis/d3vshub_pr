@@ -34,5 +34,14 @@ public class Item extends BaseEntity{
 
     @Column(name = "allergen_info")
     private String allergenInfo;
+    public Item(String value){
+        this.itemName = value;
+        this.category = value;
+        this.imageUrl = value;
+        this.description = value;
+        this.allergenInfo = value;
+        this.quantity = 1;
+        this.price = 0;
+    }
 
 }

@@ -36,13 +36,17 @@ public class OrderService implements OrdersApiDelegate {
     public ResponseEntity<String> ordersPost(OrderDTO order){
         if (order != null){
             Order o = OrderDTOMapper.DTOtoEntity(order);
+            double price = 0;
             for (OrderItem oI : o.getOrderItems()) {
                 Item i = oI.getItem();
                 int quantity = oI.getQuantity();
                 int result = itemService.getItemForOrder(i.getItemId(), quantity);
                 if (result == -1)
                     return ResponseEntity.badRequest().body("Unavailable amount of item: " + i.getItemName());
+                double itemPrice = oI.getItem().getPrice() * oI.getQuantity();
+                price+=itemPrice;
             }
+            o.setTotalPrice(price);
             orders.save(o);
             return ResponseEntity.ok().body("Order added");
         }
