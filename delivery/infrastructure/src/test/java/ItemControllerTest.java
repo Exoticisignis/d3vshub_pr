@@ -1,8 +1,6 @@
 import com.example.infrastructure.Application;
 import com.example.infrastructure.entities.*;
-import com.example.infrastructure.mappers.CourierDTOMapper;
 import com.example.infrastructure.mappers.ItemDTOMapper;
-import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.models.ItemDTO;
 import com.example.infrastructure.repositories.CustomersRepo;
 import com.example.infrastructure.repositories.ItemsRepo;
@@ -20,8 +18,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -37,12 +33,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ItemControllerTest {
     @Autowired
     private ItemsRepo items;
-    @Autowired
-    private OrderItemRepo orderItems;
-    @Autowired
-    private OrdersRepo orders;
-    @Autowired
-    private CustomersRepo customers;
     @Autowired
     private MockMvc mockMvc;
     @Test
