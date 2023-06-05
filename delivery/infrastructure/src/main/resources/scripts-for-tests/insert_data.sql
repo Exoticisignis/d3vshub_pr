@@ -47,4 +47,6 @@ VALUES ('1oifaa;fsa', 1, 2, 1);
 INSERT INTO order_items(uuid, order_id, item_id, quantity)
 VALUES ('wpinfsdlf', 1, 3, 1);
 INSERT INTO tracking(uuid, delivery_id, location, status, update_date)
-VALUES ('dpmfddps', 1 , 'location1', 'status1', '2022-06-06 12:00:00');
+VALUES ('dpmfddps', 2 , 'location1', 'status1', '2022-06-06 12:00:00');
+INSERT INTO tracking(uuid, delivery_id, location, status, update_date)
+VALUES ('asofpwme', 3 , 'location2', 'status2', '2022-06-06 12:00:00');

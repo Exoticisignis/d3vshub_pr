@@ -15,4 +15,7 @@ public interface TrackingRepo extends JpaRepository<Tracking, Long> {
 
     @Query("select t from Tracking t join t.delivery d where d.id = :id")
     public Tracking getTrackingForDeliveryId(@Param("id") Long id);
+
+    @Query("select count(*) from Tracking")
+    int getNumberOfRows();
 }
