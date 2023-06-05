@@ -1,8 +1,6 @@
 import com.example.infrastructure.Application;
 import com.example.infrastructure.entities.*;
-import com.example.infrastructure.mappers.DeliveryDTOMapper;
 import com.example.infrastructure.mappers.TrackingDTOMapper;
-import com.example.infrastructure.models.DeliveryDTO;
 import com.example.infrastructure.models.TrackingDTO;
 import com.example.infrastructure.repositories.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,9 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
