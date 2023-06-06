@@ -1,10 +1,7 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.OrdersApiDelegate;
-import com.example.infrastructure.entities.Customer;
-import com.example.infrastructure.entities.Item;
-import com.example.infrastructure.entities.Order;
-import com.example.infrastructure.entities.OrderItem;
+import com.example.infrastructure.entities.*;
 import com.example.infrastructure.mappers.OrderDTOMapper;
 import com.example.infrastructure.models.OrderDTO;
 import com.example.infrastructure.repositories.CustomersRepo;
@@ -40,6 +37,7 @@ public class OrderService implements OrdersApiDelegate {
             Order o = OrderDTOMapper.DTOtoEntity(order);
             Customer c = customers.getReferenceById(order.getCustomer());
             o.setCustomer(c);
+            o.setOrderItems(new ArrayList<>());
             double price = 0;
             List<OrderItem> orderItems = listItemsToOrderItems(order.getOrderItems());
             for (OrderItem oI : orderItems) {
@@ -57,6 +55,7 @@ public class OrderService implements OrdersApiDelegate {
                 oI.setOrder(o);
                 orderItemsRepo.save(oI);
             }
+            o.setOrderItems(orderItems);
             return ResponseEntity.ok().body("Order added");
         }
         return ResponseEntity.badRequest().body("Null object for orders POST request");
@@ -65,6 +64,8 @@ public class OrderService implements OrdersApiDelegate {
         List<OrderItem> orderItems = new ArrayList<>();
         for (String name : list){
             OrderItem orderItem = new OrderItem();
+            OrderItemId id = new OrderItemId();
+            orderItem.setId(id);
             orderItem.setItem(itemsRepo.findByName(name));
             if (orderItems.contains(orderItem)){
                 //index variable is used to keep code readable

@@ -9,15 +9,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
 public class OrderItemId implements Serializable {
-    @Column(name = "order_id")
     private Long orderId;
 
-    @Column(name = "item_id")
     private Long itemId;
 
     @Override
@@ -32,4 +29,11 @@ public class OrderItemId implements Serializable {
         return Objects.hash(itemId, orderId);
     }
 
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
 }

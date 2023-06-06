@@ -12,7 +12,7 @@ public class OrderMapper implements RowMapper<Order> {
         Order o = new Order();
         o.setOrderId(rs.getLong("order_id"));
         o.setTotalPrice(rs.getDouble("total_price"));
-        o.setOrderDate(rs.getTimestamp("order_date").toInstant());
+        o.setOrderDate(rs.getTimestamp("order_date"));
         o.setCustomer(new CustomerMapper().mapRow(rs, rowNum));
         o.setOrderItems(new OrderItemMapper().mapRowList(rs));
         return o;
