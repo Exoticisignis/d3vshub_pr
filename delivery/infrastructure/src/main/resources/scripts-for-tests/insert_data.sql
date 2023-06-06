@@ -34,6 +34,8 @@ INSERT INTO orders(uuid, customer_id, order_date, total_price, address)
 VALUES ('qppaifm1km',2, '2022-06-06 12:00:00', 0, 'address2');
 INSERT INTO orders(uuid, customer_id, order_date, total_price, address)
 VALUES ('sq09ijasf',3, '2022-06-06 12:00:00', 0, 'address3');
+INSERT INTO orders(uuid, customer_id, order_date, total_price, address)
+VALUES ('adfmimdsds',4, '2022-06-06 12:00:00', 0, 'address4');
 INSERT INTO deliveries(uuid, order_id, courier_id, delivery_date)
 VALUES ('1kdoaspf11', 1, 1, '2022-06-06 12:00:00');
 INSERT INTO deliveries(uuid, order_id, courier_id, delivery_date)

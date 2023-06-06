@@ -36,7 +36,7 @@ public interface OrdersApi {
         @ApiResponse(code = 200, message = "A list of orders for a customer.", response = OrderDTO.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @GetMapping(
-        value = "/orders/{customerId}",
+        value = "/ordersForCustomer/{customerId}",
         produces = { "application/json" }
     )
     default ResponseEntity<List<OrderDTO>> ordersCustomerIdGet(@ApiParam(value = "",required=true) @PathVariable("customerId") Long customerId) {

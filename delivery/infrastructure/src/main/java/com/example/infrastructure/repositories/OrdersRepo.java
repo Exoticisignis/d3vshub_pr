@@ -15,4 +15,7 @@ public interface OrdersRepo extends JpaRepository<Order, Long> {
 
     @Query("select o from Order o join o.customer c where c.customerId = :id")
     public List<Order> getOrdersForCustomerId(@Param("id") Long id);
+
+    @Query("select count(*) from Order")
+    int getNumberOfRows();
 }

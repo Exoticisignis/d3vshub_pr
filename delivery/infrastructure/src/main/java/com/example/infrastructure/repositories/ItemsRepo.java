@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ItemsRepo extends JpaRepository<Item, Long> {
     @Query("select i from Item i where i.itemName = :name")
-    Item findByName(String name);
+    Item findByName(@Param("name") String name);
 
     @Query("select i from Item i order by i.itemId asc limit :n")
     public List<Item> getNItems(@Param("n") int n);
