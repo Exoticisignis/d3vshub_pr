@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CustomersRepo extends JpaRepository<Customer, Long> {
@@ -19,4 +20,6 @@ public interface CustomersRepo extends JpaRepository<Customer, Long> {
 
     @Query("select count(*) from Customer")
     int getNumberOfRows();
+
+    Optional<Customer> findById(Long id);
 }

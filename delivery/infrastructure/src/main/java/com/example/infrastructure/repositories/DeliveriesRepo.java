@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface DeliveriesRepo extends JpaRepository<Delivery, Long> {
@@ -15,4 +16,6 @@ public interface DeliveriesRepo extends JpaRepository<Delivery, Long> {
 
     @Query("select count(*) from Delivery")
     int getNumberOfRows();
+
+    Optional<Delivery> findById(Long id);
 }

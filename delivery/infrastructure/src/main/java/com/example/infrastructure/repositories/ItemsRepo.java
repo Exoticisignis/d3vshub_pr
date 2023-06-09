@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ItemsRepo extends JpaRepository<Item, Long> {
@@ -15,5 +16,7 @@ public interface ItemsRepo extends JpaRepository<Item, Long> {
 
     @Query("select i from Item i order by i.itemId asc limit :n")
     public List<Item> getNItems(@Param("n") int n);
+
+    Optional<Item> findById(Long id);
 
 }

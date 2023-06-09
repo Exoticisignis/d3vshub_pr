@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TrackingRepo extends JpaRepository<Tracking, Long> {
@@ -18,4 +19,6 @@ public interface TrackingRepo extends JpaRepository<Tracking, Long> {
 
     @Query("select count(*) from Tracking")
     int getNumberOfRows();
+
+    Optional<Tracking> findById(Long id);
 }
