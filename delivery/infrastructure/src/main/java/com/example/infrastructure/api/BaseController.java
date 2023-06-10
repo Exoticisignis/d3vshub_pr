@@ -1,14 +1,12 @@
 package com.example.infrastructure.api;
 
-import com.example.infrastructure.api.errors.ApiError;
-import com.example.infrastructure.api.errors.NoSuchElementFoundException;
-import com.example.infrastructure.api.errors.ResponseEntityBuilder;
-import com.example.infrastructure.api.errors.UserExistsException;
+import com.example.infrastructure.api.errors.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
@@ -25,8 +23,22 @@ public class BaseController {
 
         ApiError err = new ApiError(
                 LocalDateTime.now(),
-                HttpStatus.BAD_REQUEST,
+                HttpStatus.NOT_FOUND,
                 "Resource Not Found" ,
+                details);
+
+        return ResponseEntityBuilder.build(err);
+    }
+
+    @ExceptionHandler(NullObjectInRequestBodyEcxeption.class)
+    public ResponseEntity<Object> handleNullObjectRequestException(NullObjectInRequestBodyEcxeption ex){
+        List<String> details = new ArrayList<String>();
+        details.add(ex.getMessage());
+
+        ApiError err = new ApiError(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST,
+                "Null object for post method" ,
                 details);
 
         return ResponseEntityBuilder.build(err);
@@ -40,7 +52,7 @@ public class BaseController {
         ApiError err = new ApiError(
                 LocalDateTime.now(),
                 HttpStatus.BAD_REQUEST,
-                "User with this email/login already exists" ,
+                ex.getMessage() ,
                 details);
 
         return ResponseEntityBuilder.build(err);

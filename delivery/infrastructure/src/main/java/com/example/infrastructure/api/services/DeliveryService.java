@@ -1,6 +1,8 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.DeliveriesApiDelegate;
+import com.example.infrastructure.api.errors.NoSuchElementFoundException;
+import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
 import com.example.infrastructure.entities.Delivery;
 import com.example.infrastructure.mappers.DeliveryDTOMapper;
 import com.example.infrastructure.models.DeliveryDTO;
@@ -28,15 +30,15 @@ public class DeliveryService implements DeliveriesApiDelegate {
 
     @Override
     public ResponseEntity<String> deliveriesPost(DeliveryDTO delivery){
-        if (delivery != null){
-            Delivery d = new Delivery();
-            d.setDeliveryDate(Timestamp.valueOf(delivery.getDeliveryDate()));
-            d.setCourier(couriers.getReferenceById(delivery.getCourier()));
-            d.setOrder(orders.getReferenceById(delivery.getOrder()));
-            deliveries.save(d);
-            return ResponseEntity.ok().body("Delivery added");
+        if (delivery == null){
+            throw new NullObjectInRequestBodyEcxeption("Null value in request body");
         }
-        return ResponseEntity.badRequest().body("Null object for deliveries POST request");
+        Delivery d = new Delivery();
+        d.setDeliveryDate(Timestamp.valueOf(delivery.getDeliveryDate()));
+        d.setCourier(couriers.getReferenceById(delivery.getCourier()));
+        d.setOrder(orders.getReferenceById(delivery.getOrder()));
+        deliveries.save(d);
+        return ResponseEntity.ok().body("Delivery added");
     }
 
     @Override
@@ -55,20 +57,20 @@ public class DeliveryService implements DeliveriesApiDelegate {
     @Override
     @Transactional
     public ResponseEntity<String> deliveriesIdDelete(Long id){
-        if(deliveries.existsById(id)){
-            deliveries.deleteById(id);
-            return ResponseEntity.ok().body("Delivery deleted");
+        if(!deliveries.existsById(id)){
+            throw new NoSuchElementFoundException("Delivery with ID "+ id +" not found");
         }
-        return ResponseEntity.notFound().build();
+        deliveries.deleteById(id);
+        return ResponseEntity.ok().body("Delivery deleted");
     }
 
     @Override
     public ResponseEntity<DeliveryDTO> deliveriesIdGet(Long id){
-        if(deliveries.existsById(id)){
-            Delivery entity = deliveries.getReferenceById(id);
-            DeliveryDTO dto = DeliveryDTOMapper.deliveryToDTO(entity);
-            return ResponseEntity.ok().body(dto);
+        if(!deliveries.existsById(id)){
+            throw new NoSuchElementFoundException("Delivery with ID "+ id +" not found");
         }
-        return ResponseEntity.notFound().build();
+        Delivery entity = deliveries.getReferenceById(id);
+        DeliveryDTO dto = DeliveryDTOMapper.deliveryToDTO(entity);
+        return ResponseEntity.ok().body(dto);
     }
 }

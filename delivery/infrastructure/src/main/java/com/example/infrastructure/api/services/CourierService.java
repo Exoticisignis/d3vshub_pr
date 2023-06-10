@@ -1,15 +1,20 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.CouriersApiDelegate;
+import com.example.infrastructure.api.errors.NoSuchElementFoundException;
+import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
+import com.example.infrastructure.api.errors.UserExistsException;
 import com.example.infrastructure.entities.Courier;
 import com.example.infrastructure.mappers.CourierDTOMapper;
 import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.repositories.CouriersRepo;
 import com.example.infrastructure.security.PasswordHasher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.MethodParameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,32 +30,30 @@ public class CourierService implements CouriersApiDelegate {
     }
 
     @Override
-    public ResponseEntity<String> couriersPost(CourierDTO courier){
-        if (courier != null){
-            if (couriersRepo.existsByLogin(courier.getLogin()))
-                return ResponseEntity.badRequest().body("Courier with this login already exists");
-            String hPassword = PasswordHasher.hashPassword(courier.getPassword(), courier.getSalt());
-            Courier c = CourierDTOMapper.DTOtoEntity(courier);
-            c.setHashedPassword(hPassword);
-            couriersRepo.save(c);
-            return ResponseEntity.ok().body("Courier added");
+    public ResponseEntity<String> couriersPost(CourierDTO courier) throws UserExistsException {
+        if (courier == null){
+            throw new NullObjectInRequestBodyEcxeption("Null value in request body");
         }
-        return ResponseEntity.badRequest().body("Null object for couriers POST request");
+        if (couriersRepo.existsByLogin(courier.getLogin()))
+            throw new UserExistsException("Login already in use");
+        String hPassword = PasswordHasher.hashPassword(courier.getPassword(), courier.getSalt());
+        Courier c = CourierDTOMapper.DTOtoEntity(courier);
+        c.setHashedPassword(hPassword);
+        couriersRepo.save(c);
+        return ResponseEntity.ok().body("Courier added");
     }
 
     @Override
     public ResponseEntity<List<CourierDTO>> couriersGet(Integer limit){
-        if(limit > 0){
-            List<CourierDTO> result = new ArrayList<>();
-            List<Courier> list = couriersRepo.getNCouriers(limit);
-            for (Courier c : list){
-                result.add(CourierDTOMapper.courierToDTO(c));
-            }
-            return ResponseEntity.ok().body(result);
+        List<CourierDTO> result = new ArrayList<>();
+        List<Courier> list = couriersRepo.getNCouriers(limit);
+        for (Courier c : list){
+            result.add(CourierDTOMapper.courierToDTO(c));
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok().body(result);
     }
 
+    /*
     @Override
     @Transactional
     public ResponseEntity<String> couriersIdDelete(Long id){
@@ -59,7 +62,17 @@ public class CourierService implements CouriersApiDelegate {
             return ResponseEntity.ok().body("Courier deleted");
         }
         return ResponseEntity.notFound().build();
+    }*/
+
+    @Override
+    @Transactional
+    public ResponseEntity<String> couriersIdDelete(Long id){
+        if(!couriersRepo.existsById(id))
+            throw new NoSuchElementFoundException("Courier with ID "+ id +" not found");
+        couriersRepo.deleteById(id);
+        return ResponseEntity.ok().body("Courier deleted");
     }
+    /*
 
     @Override
     public ResponseEntity<CourierDTO> couriersIdGet(Long id){
@@ -69,5 +82,14 @@ public class CourierService implements CouriersApiDelegate {
             return ResponseEntity.ok().body(courier);
         }
         return ResponseEntity.notFound().build();
+    }
+    */
+
+    @Override
+    public ResponseEntity<CourierDTO> couriersIdGet(Long id){
+        Courier c = couriersRepo.findById(id).orElseThrow(()
+                -> new NoSuchElementFoundException("Courier with ID "+ id +" not found"));
+        CourierDTO courier = CourierDTOMapper.courierToDTO(c);
+        return ResponseEntity.ok().body(courier);
     }
 }

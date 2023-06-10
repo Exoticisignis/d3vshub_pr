@@ -1,5 +1,6 @@
 package com.example.infrastructure.api;
 
+import com.example.infrastructure.api.errors.UserExistsException;
 import com.example.infrastructure.models.CourierDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -84,7 +85,7 @@ public interface CouriersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CouriersApi#couriersPost
      */
-    default ResponseEntity<String> couriersPost(CourierDTO courier) {
+    default ResponseEntity<String> couriersPost(CourierDTO courier) throws UserExistsException {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

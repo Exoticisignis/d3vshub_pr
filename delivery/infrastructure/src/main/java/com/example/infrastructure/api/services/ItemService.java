@@ -1,6 +1,8 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.ItemsApiDelegate;
+import com.example.infrastructure.api.errors.NoSuchElementFoundException;
+import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
 import com.example.infrastructure.entities.Item;
 import com.example.infrastructure.entities.OrderItem;
 import com.example.infrastructure.mappers.ItemDTOMapper;
@@ -41,12 +43,12 @@ public class ItemService implements ItemsApiDelegate {
 
     @Override
     public ResponseEntity<String> itemsPost(ItemDTO item){
-        if (item != null){
-            Item i = ItemDTOMapper.DTOtoEntity(item);
-            items.save(i);
-            return ResponseEntity.ok().body("Item added");
+        if (item == null){
+            throw new NullObjectInRequestBodyEcxeption("Null value in request body");
         }
-        return ResponseEntity.badRequest().body("Null object for items POST request");
+        Item i = ItemDTOMapper.DTOtoEntity(item);
+        items.save(i);
+        return ResponseEntity.ok().body("Item added");
     }
 
     @Override
@@ -65,33 +67,33 @@ public class ItemService implements ItemsApiDelegate {
     @Override
     @Transactional
     public ResponseEntity<String> itemsIdDelete(Long id){
-        if(items.existsById(id)){
-            items.deleteById(id);
-            return ResponseEntity.ok().body("Item deleted");
+        if(!items.existsById(id)){
+            throw new NoSuchElementFoundException("Item with ID "+ id +" not found");
         }
-        return ResponseEntity.notFound().build();
+        items.deleteById(id);
+        return ResponseEntity.ok().body("Item deleted");
     }
 
     @Override
     public ResponseEntity<ItemDTO> itemsIdGet(Long id){
-        if(items.existsById(id)){
-            Item entity = items.getReferenceById(id);
-            ItemDTO dto = ItemDTOMapper.itemToDTO(entity);
-            return ResponseEntity.ok().body(dto);
+        if(!items.existsById(id)){
+            throw new NoSuchElementFoundException("Item with ID "+ id +" not found");
         }
-        return ResponseEntity.notFound().build();
+        Item entity = items.getReferenceById(id);
+        ItemDTO dto = ItemDTOMapper.itemToDTO(entity);
+        return ResponseEntity.ok().body(dto);
     }
 
     @Override
     public ResponseEntity<List<ItemDTO>> itemsForOrderOrderIdGet(Long id){
-        if(orders.existsById(id)){
-            List<OrderItem> orderItemsList = orderItems.getItemsForOrderId(id);
-            List<ItemDTO> dtoList = new ArrayList<>();
-            for (OrderItem oI : orderItemsList){
-                dtoList.add(ItemDTOMapper.itemToDTO(oI.getItem()));
-            }
-            return ResponseEntity.ok().body(dtoList);
+        if(!orders.existsById(id)){
+            throw new NoSuchElementFoundException("Order with ID "+ id +" not found");
         }
-        return ResponseEntity.notFound().build();
+        List<OrderItem> orderItemsList = orderItems.getItemsForOrderId(id);
+        List<ItemDTO> dtoList = new ArrayList<>();
+        for (OrderItem oI : orderItemsList){
+            dtoList.add(ItemDTOMapper.itemToDTO(oI.getItem()));
+        }
+        return ResponseEntity.ok().body(dtoList);
     }
 }

@@ -1,6 +1,9 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.CustomersApiDelegate;
+import com.example.infrastructure.api.errors.NoSuchElementFoundException;
+import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
+import com.example.infrastructure.api.errors.UserExistsException;
 import com.example.infrastructure.entities.Customer;
 import com.example.infrastructure.mappers.CustomerDTOMapper;
 import com.example.infrastructure.models.CustomerDTO;
@@ -20,17 +23,17 @@ public class CustomerService implements CustomersApiDelegate {
     private CustomersRepo customers;
 
     @Override
-    public ResponseEntity<String> customersPost(CustomerDTO customer){
-        if (customer != null){
-            if (customers.existsByEmail(customer.getLogin()))
-                return ResponseEntity.badRequest().body("Customer with this email already exists");
-            String hPassword = PasswordHasher.hashPassword(customer.getPassword(), customer.getSalt());
-            Customer c = CustomerDTOMapper.DTOtoEntity(customer);
-            c.setHashedPassword(hPassword);
-            customers.save(c);
-            return ResponseEntity.ok().body("Customer added");
+    public ResponseEntity<String> customersPost(CustomerDTO customer) throws UserExistsException {
+        if (customer == null){
+            throw new NullObjectInRequestBodyEcxeption("Null value in request body");
         }
-        return ResponseEntity.badRequest().body("Null object for customers POST request");
+        if (customers.existsByEmail(customer.getLogin()))
+            throw new UserExistsException("Email already in use");
+        String hPassword = PasswordHasher.hashPassword(customer.getPassword(), customer.getSalt());
+        Customer c = CustomerDTOMapper.DTOtoEntity(customer);
+        c.setHashedPassword(hPassword);
+        customers.save(c);
+        return ResponseEntity.ok().body("Customer added");
     }
 
     @Override
@@ -49,12 +52,32 @@ public class CustomerService implements CustomersApiDelegate {
     @Override
     @Transactional
     public ResponseEntity<String> customersIdDelete(Long id){
+        if(!customers.existsById(id)){
+            throw new NoSuchElementFoundException("Customer with ID "+ id +" not found");
+        }
+        customers.deleteById(id);
+        return ResponseEntity.ok().body("Customer deleted");
+    }
+    @Override
+    public ResponseEntity<CustomerDTO> customersIdGet(Long id){
+        if(!customers.existsById(id)){
+            throw new NoSuchElementFoundException("Customer with ID "+ id +" not found");
+        }
+        Customer c = customers.getReferenceById(id);
+        CustomerDTO customer = CustomerDTOMapper.customerToDTO(c);
+        return ResponseEntity.ok().body(customer);
+    }
+/*
+    @Override
+    @Transactional
+    public ResponseEntity<String> customersIdDelete(Long id){
         if(customers.existsById(id)){
             customers.deleteById(id);
             return ResponseEntity.ok().body("Customer deleted");
         }
         return ResponseEntity.notFound().build();
     }
+
 
     @Override
     public ResponseEntity<CustomerDTO> customersIdGet(Long id){
@@ -65,4 +88,6 @@ public class CustomerService implements CustomersApiDelegate {
         }
         return ResponseEntity.notFound().build();
     }
+
+ */
 }

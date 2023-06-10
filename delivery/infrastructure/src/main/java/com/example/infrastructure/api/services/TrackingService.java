@@ -1,6 +1,8 @@
 package com.example.infrastructure.api.services;
 
 import com.example.infrastructure.api.TrackingApiDelegate;
+import com.example.infrastructure.api.errors.NoSuchElementFoundException;
+import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
 import com.example.infrastructure.entities.Delivery;
 import com.example.infrastructure.entities.Tracking;
 import com.example.infrastructure.mappers.TrackingDTOMapper;
@@ -24,14 +26,14 @@ public class TrackingService implements TrackingApiDelegate {
 
     @Override
     public ResponseEntity<String> trackingPost(TrackingDTO tracking){
-        if (tracking != null){
-            Tracking t = TrackingDTOMapper.DTOtoEntity(tracking);
-            Delivery d = deliveries.getReferenceById(tracking.getDelivery());
-            t.setDelivery(d);
-            trackingRepo.save(t);
-            return ResponseEntity.ok().body("Tracking added");
+        if (tracking == null){
+            throw new NullObjectInRequestBodyEcxeption("Null value in request body");
         }
-        return ResponseEntity.badRequest().body("Null object for tracking POST request");
+        Tracking t = TrackingDTOMapper.DTOtoEntity(tracking);
+        Delivery d = deliveries.getReferenceById(tracking.getDelivery());
+        t.setDelivery(d);
+        trackingRepo.save(t);
+        return ResponseEntity.ok().body("Tracking added");
     }
 
     @Override
@@ -50,29 +52,29 @@ public class TrackingService implements TrackingApiDelegate {
     @Override
     @Transactional
     public ResponseEntity<String> trackingIdDelete(Long id){
-        if(trackingRepo.existsById(id)){
-            trackingRepo.deleteById(id);
-            return ResponseEntity.ok().body("Tracking deleted");
+        if(!trackingRepo.existsById(id)){
+            throw new NoSuchElementFoundException("Tracking with ID "+ id +" not found");
         }
-        return ResponseEntity.notFound().build();
+        trackingRepo.deleteById(id);
+        return ResponseEntity.ok().body("Tracking deleted");
     }
 
     @Override
     public ResponseEntity<TrackingDTO> trackingIdGet(Long id){
-        if(trackingRepo.existsById(id)){
-            Tracking entity = trackingRepo.getReferenceById(id);
-            TrackingDTO dto = TrackingDTOMapper.trackingToDTO(entity);
-            return ResponseEntity.ok().body(dto);
+        if(!trackingRepo.existsById(id)){
+            throw new NoSuchElementFoundException("Tracking with ID "+ id +" not found");
         }
-        return ResponseEntity.notFound().build();
+        Tracking entity = trackingRepo.getReferenceById(id);
+        TrackingDTO dto = TrackingDTOMapper.trackingToDTO(entity);
+        return ResponseEntity.ok().body(dto);
     }
 
     @Override
     public ResponseEntity<TrackingDTO> trackingForDeliveryIdGet(Long id){
-        if(deliveries.existsById(id)){
-            Tracking t = trackingRepo.getTrackingForDeliveryId(id);
-            return ResponseEntity.ok().body(TrackingDTOMapper.trackingToDTO(t));
+        if(!deliveries.existsById(id)){
+            throw new NoSuchElementFoundException("Delivery with ID "+ id +" not found");
         }
-        return ResponseEntity.notFound().build();
+        Tracking t = trackingRepo.getTrackingForDeliveryId(id);
+        return ResponseEntity.ok().body(TrackingDTOMapper.trackingToDTO(t));
     }
 }

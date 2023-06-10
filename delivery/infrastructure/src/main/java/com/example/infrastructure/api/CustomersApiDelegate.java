@@ -1,5 +1,6 @@
 package com.example.infrastructure.api;
 
+import com.example.infrastructure.api.errors.UserExistsException;
 import com.example.infrastructure.models.CustomerDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -84,7 +85,7 @@ public interface CustomersApiDelegate {
      *         or unexpected error (status code 400)
      * @see CustomersApi#customersPost
      */
-    default ResponseEntity<String> customersPost(CustomerDTO customer) {
+    default ResponseEntity<String> customersPost(CustomerDTO customer) throws UserExistsException {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
