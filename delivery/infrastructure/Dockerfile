@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 
 # Copy JAR file to container
-COPY ./target/infrastructure-1.0-SNAPSHOT.jar .
+COPY ./target/infrastructure-1.0-SNAPSHOT.jar /app
 
 # Expose port
 EXPOSE 8080
