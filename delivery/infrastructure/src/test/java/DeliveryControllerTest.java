@@ -61,7 +61,7 @@ public class DeliveryControllerTest {
     }
     @Test
     public void shouldReturnDeleteConfirmation() throws Exception{
-        int index = deliveries.getNumberOfRows();
+        int index = 1;
         String url = "/deliveries/";
         url+= Integer.toString(index);
         this.mockMvc.perform(delete(url)).andDo(print())

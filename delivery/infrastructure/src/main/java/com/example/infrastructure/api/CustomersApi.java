@@ -5,6 +5,7 @@
  */
 package com.example.infrastructure.api;
 
+import com.example.infrastructure.api.errors.UserExistsException;
 import com.example.infrastructure.models.CustomerDTO;
 import com.example.infrastructure.models.Error;
 import io.swagger.annotations.*;
@@ -97,7 +98,7 @@ public interface CustomersApi {
         value = "/customers",
         produces = { "application/json" }
     )
-    default ResponseEntity<String> customersPost(@RequestBody CustomerDTO customer) {
+    default ResponseEntity<String> customersPost(@RequestBody CustomerDTO customer) throws UserExistsException {
         return getDelegate().customersPost(customer);
     }
 

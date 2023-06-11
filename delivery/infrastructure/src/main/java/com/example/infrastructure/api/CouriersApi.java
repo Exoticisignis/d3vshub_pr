@@ -5,6 +5,7 @@
  */
 package com.example.infrastructure.api;
 
+import com.example.infrastructure.api.errors.UserExistsException;
 import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.models.Error;
 import io.swagger.annotations.*;
@@ -102,7 +103,7 @@ public interface CouriersApi {
         value = "/couriers",
         produces = { "application/json" }
     )
-    default ResponseEntity<String> couriersPost(@RequestBody CourierDTO courier) {
+    default ResponseEntity<String> couriersPost(@RequestBody CourierDTO courier) throws UserExistsException {
         return getDelegate().couriersPost(courier);
     }
 
