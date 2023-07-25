@@ -9,6 +9,7 @@ import com.example.infrastructure.models.Error;
 import com.example.infrastructure.models.TrackingDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ import java.util.List;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-16T17:35:02.597539500+02:00[Europe/Warsaw]")
 @Validated
 @Api(value = "tracking", description = "the tracking API")
+@PreAuthorize("hasRole('USER')")
 public interface TrackingApi {
 
     default TrackingApiDelegate getDelegate() {
