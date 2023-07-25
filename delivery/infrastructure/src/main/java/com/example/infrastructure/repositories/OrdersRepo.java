@@ -21,4 +21,7 @@ public interface OrdersRepo extends JpaRepository<Order, Long> {
     int getNumberOfRows();
 
     Optional<Order> findById(Long id);
+
+    @Query("select o from Order o where orderDate between :fromDate and :toDate")
+    public List<Order> getOrdersInDates(@Param("fromDate") String fromDate, @Param("toDate") String toDate);
 }
