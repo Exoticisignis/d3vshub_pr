@@ -1,6 +1,9 @@
-package com.example.infrastructure.api;
+package com.example.infrastructure.api.delegates;
 
-import com.example.infrastructure.models.ItemDTO;
+import com.example.infrastructure.api.utils.ApiUtil;
+import com.example.infrastructure.api.api_def.DeliveriesApi;
+import com.example.infrastructure.api.controllers.DeliveriesApiController;
+import com.example.infrastructure.models.DeliveryDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,29 +13,29 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * A delegate to be called by the {@link ItemsApiController}}.
+ * A delegate to be called by the {@link DeliveriesApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-16T17:35:02.597539500+02:00[Europe/Warsaw]")
-public interface ItemsApiDelegate {
+public interface DeliveriesApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * GET /items : List all items
+     * GET /deliveries : List all deliveries
      *
      * @param limit  (optional)
-     * @return A list of items. (status code 200)
+     * @return A list of deliveries. (status code 200)
      *         or unexpected error (status code 400)
-     * @see ItemsApi#itemsGet
+     * @see DeliveriesApi#deliveriesGet
      */
-    default ResponseEntity<List<ItemDTO>> itemsGet(Integer limit) {
+    default ResponseEntity<List<DeliveryDTO>> deliveriesGet(Integer limit) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"name\" : \"name\", \"quantity\" : 5, \"price\" : 5.962133916683182, \"imageUrl\" : \"imageUrl\", \"allergenInfo\" : \"allergenInfo\", \"description\" : \"description\", \"id\" : 1, \"category\" : \"category\" }";
+                    String exampleString = "{ \"courier\" : 1, \"id\" : 0, \"deliveryDate\" : \"2000-01-23T04:56:07.000+00:00\", \"order\" : 6 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -43,31 +46,31 @@ public interface ItemsApiDelegate {
     }
 
     /**
-     * DELETE /items/{id} : Delete item by id
+     * DELETE /deliveries/{id} : Delete courier by id
      *
      * @param id  (required)
      * @return Deleted (status code 204)
      *         or Id not found (status code 404)
-     * @see ItemsApi#itemsIdDelete
+     * @see DeliveriesApi#deliveriesIdDelete
      */
-    default ResponseEntity<String> itemsIdDelete(Long id) {
+    default ResponseEntity<String> deliveriesIdDelete(Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
     /**
-     * GET /items/{id} : Get item by id
+     * GET /deliveries/{id} : Get delivery by id
      *
      * @param id  (required)
-     * @return Get item by id (status code 200)
+     * @return Get delivery by id (status code 200)
      *         or unexpected error (status code 400)
-     * @see ItemsApi#itemsIdGet
+     * @see DeliveriesApi#deliveriesIdGet
      */
-    default ResponseEntity<ItemDTO> itemsIdGet(Long id) {
+    default ResponseEntity<DeliveryDTO> deliveriesIdGet(Long id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"name\" : \"name\", \"quantity\" : 5, \"price\" : 5.962133916683182, \"imageUrl\" : \"imageUrl\", \"allergenInfo\" : \"allergenInfo\", \"description\" : \"description\", \"id\" : 1, \"category\" : \"category\" }";
+                    String exampleString = "{ \"courier\" : 1, \"id\" : 0, \"deliveryDate\" : \"2000-01-23T04:56:07.000+00:00\", \"order\" : 6 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -78,27 +81,13 @@ public interface ItemsApiDelegate {
     }
 
     /**
-     * POST /items : Create an item
+     * POST /deliveries : Create a delivery
      *
      * @return Null response (status code 201)
      *         or unexpected error (status code 400)
-     * @see ItemsApi#itemsPost
+     * @see DeliveriesApi#deliveriesPost
      */
-    default ResponseEntity<String> itemsPost(ItemDTO item) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-    default ResponseEntity<List<ItemDTO>> itemsForOrderOrderIdGet(Long orderId) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"name\" : \"name\", \"quantity\" : 5, \"price\" : 5.962133916683182, \"imageUrl\" : \"imageUrl\", \"allergenInfo\" : \"allergenInfo\", \"description\" : \"description\", \"id\" : 1, \"category\" : \"category\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
+    default ResponseEntity<String> deliveriesPost(DeliveryDTO delivery) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

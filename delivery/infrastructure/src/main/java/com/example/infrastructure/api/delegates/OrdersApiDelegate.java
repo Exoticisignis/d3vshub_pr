@@ -1,5 +1,8 @@
-package com.example.infrastructure.api;
+package com.example.infrastructure.api.delegates;
 
+import com.example.infrastructure.api.utils.ApiUtil;
+import com.example.infrastructure.api.api_def.OrdersApi;
+import com.example.infrastructure.api.controllers.OrdersApiController;
 import com.example.infrastructure.models.OrderDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

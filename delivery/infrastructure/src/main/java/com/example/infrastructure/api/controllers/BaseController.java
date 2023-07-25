@@ -1,4 +1,4 @@
-package com.example.infrastructure.api;
+package com.example.infrastructure.api.controllers;
 
 import com.example.infrastructure.api.errors.*;
 import org.springframework.http.HttpHeaders;

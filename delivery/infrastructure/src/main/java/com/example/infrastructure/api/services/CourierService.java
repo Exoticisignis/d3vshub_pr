@@ -1,6 +1,6 @@
 package com.example.infrastructure.api.services;
 
-import com.example.infrastructure.api.CouriersApiDelegate;
+import com.example.infrastructure.api.delegates.CouriersApiDelegate;
 import com.example.infrastructure.api.errors.NoSuchElementFoundException;
 import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
 import com.example.infrastructure.api.errors.UserExistsException;
@@ -10,11 +10,9 @@ import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.repositories.CouriersRepo;
 import com.example.infrastructure.security.PasswordHasher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.MethodParameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.ArrayList;
 import java.util.List;

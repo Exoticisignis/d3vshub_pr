@@ -3,8 +3,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-package com.example.infrastructure.api;
+package com.example.infrastructure.api.api_def;
 
+import com.example.infrastructure.api.delegates.TrackingApiDelegate;
 import com.example.infrastructure.models.Error;
 import com.example.infrastructure.models.TrackingDTO;
 import io.swagger.annotations.*;

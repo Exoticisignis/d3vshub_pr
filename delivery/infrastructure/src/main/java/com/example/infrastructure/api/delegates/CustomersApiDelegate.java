@@ -1,5 +1,8 @@
-package com.example.infrastructure.api;
+package com.example.infrastructure.api.delegates;
 
+import com.example.infrastructure.api.utils.ApiUtil;
+import com.example.infrastructure.api.api_def.CustomersApi;
+import com.example.infrastructure.api.controllers.CustomersApiController;
 import com.example.infrastructure.api.errors.UserExistsException;
 import com.example.infrastructure.models.CustomerDTO;
 import org.springframework.http.HttpStatus;

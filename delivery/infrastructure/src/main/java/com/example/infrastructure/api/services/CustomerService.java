@@ -1,6 +1,6 @@
 package com.example.infrastructure.api.services;
 
-import com.example.infrastructure.api.CustomersApiDelegate;
+import com.example.infrastructure.api.delegates.CustomersApiDelegate;
 import com.example.infrastructure.api.errors.NoSuchElementFoundException;
 import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
 import com.example.infrastructure.api.errors.UserExistsException;

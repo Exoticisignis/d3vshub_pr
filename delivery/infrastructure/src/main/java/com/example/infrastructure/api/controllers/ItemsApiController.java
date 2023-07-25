@@ -1,6 +1,7 @@
-package com.example.infrastructure.api;
+package com.example.infrastructure.api.controllers;
 
-import org.springframework.stereotype.Controller;
+import com.example.infrastructure.api.api_def.ItemsApi;
+import com.example.infrastructure.api.delegates.ItemsApiDelegate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

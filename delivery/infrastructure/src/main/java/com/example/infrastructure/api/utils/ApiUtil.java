@@ -1,4 +1,4 @@
-package com.example.infrastructure.api;
+package com.example.infrastructure.api.utils;
 
 import org.springframework.web.context.request.NativeWebRequest;
 

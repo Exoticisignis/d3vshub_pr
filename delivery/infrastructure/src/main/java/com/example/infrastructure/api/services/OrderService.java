@@ -1,7 +1,6 @@
 package com.example.infrastructure.api.services;
 
-import com.example.infrastructure.api.OrdersApi;
-import com.example.infrastructure.api.OrdersApiDelegate;
+import com.example.infrastructure.api.delegates.OrdersApiDelegate;
 import com.example.infrastructure.api.errors.NoSuchElementFoundException;
 import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
 import com.example.infrastructure.entities.*;

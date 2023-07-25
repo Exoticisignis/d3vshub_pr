@@ -1,13 +1,12 @@
 package com.example.infrastructure.api.services;
 
-import com.example.infrastructure.api.DeliveriesApiDelegate;
+import com.example.infrastructure.api.delegates.DeliveriesApiDelegate;
 import com.example.infrastructure.api.errors.NoSuchElementFoundException;
 import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
 import com.example.infrastructure.entities.Delivery;
 import com.example.infrastructure.mappers.DeliveryDTOMapper;
 import com.example.infrastructure.models.DeliveryDTO;
 import com.example.infrastructure.repositories.CouriersRepo;
-import com.example.infrastructure.repositories.CustomersRepo;
 import com.example.infrastructure.repositories.DeliveriesRepo;
 import com.example.infrastructure.repositories.OrdersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
