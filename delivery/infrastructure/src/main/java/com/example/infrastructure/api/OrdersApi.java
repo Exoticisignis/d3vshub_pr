@@ -112,7 +112,7 @@ public interface OrdersApi {
     @ApiOperation(value = "Create an order", nickname = "ordersPost", notes = "", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Null response"),
-        @ApiResponse(code = 200, message = "unexpected error", response = Error.class) })
+        @ApiResponse(code = 400, message = "unexpected error", response = Error.class) })
     @PostMapping(
         value = "/orders",
         produces = { "application/json" }
@@ -138,5 +138,19 @@ public interface OrdersApi {
     )
     default ResponseEntity<List<OrderDTO>> ordersForItemIdGet(@ApiParam(value = "",required=true) @PathVariable("itemId") Long itemId) {
         return getDelegate().ordersForItemIdGet(itemId);
+    }
+
+    @ApiOperation(value = "Order raport for dates", nickname = "ordersDateRaport", notes = "", response = OrderDTO.class, responseContainer = "List", tags={ })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "A raport list of orders in specified dates", response = OrderDTO
+                    .class, responseContainer = "List"),
+            @ApiResponse(code = 404, message = "unexpected error", response = Error.class)
+    })
+    @GetMapping(
+            value = "/ordersForDates",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<List<OrderDTO>> ordersInDates(@RequestBody String dates){
+        return getDelegate().ordersInDates(dates);
     }
 }

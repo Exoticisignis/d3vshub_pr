@@ -132,4 +132,17 @@ public interface OrdersApiDelegate {
 
     }
 
+    default ResponseEntity<List<OrderDTO>> ordersInDates(String dates){
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"address\" : \"address\", \"totalPrice\" : 2.3021358869347655, \"id\" : 0, \"orderItems\" : [ { \"quantity\" : 5, \"price\" : 5.962133916683182, \"imageUrl\" : \"imageUrl\", \"allergenInfo\" : \"allergenInfo\", \"description\" : \"description\", \"id\" : 1, \"category\" : \"category\" }, { \"quantity\" : 5, \"price\" : 5.962133916683182, \"imageUrl\" : \"imageUrl\", \"allergenInfo\" : \"allergenInfo\", \"description\" : \"description\", \"id\" : 1, \"category\" : \"category\" } ], \"orderDate\" : \"2000-01-23T04:56:07.000+00:00\", \"customer\" : 6 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
 }

@@ -10,6 +10,7 @@ import com.example.infrastructure.models.CourierDTO;
 import com.example.infrastructure.models.Error;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-16T17:35:02.597539500+02:00[Europe/Warsaw]")
 @Validated
 @Api(value = "couriers", description = "the couriers API")
+@PreAuthorize("hasRole('ADMIN')")
 public interface CouriersApi {
 
     default CouriersApiDelegate getDelegate() {

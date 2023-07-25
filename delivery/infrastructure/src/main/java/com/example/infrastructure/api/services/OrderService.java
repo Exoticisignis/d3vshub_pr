@@ -1,5 +1,6 @@
 package com.example.infrastructure.api.services;
 
+import com.example.infrastructure.api.OrdersApi;
 import com.example.infrastructure.api.OrdersApiDelegate;
 import com.example.infrastructure.api.errors.NoSuchElementFoundException;
 import com.example.infrastructure.api.errors.NullObjectInRequestBodyEcxeption;
@@ -140,5 +141,17 @@ public class OrderService implements OrdersApiDelegate {
             dtoList.add(OrderDTOMapper.orderToDTO(oI.getOrder()));
         }
         return ResponseEntity.ok().body(dtoList);
+    }
+    @Override
+    public ResponseEntity<List<OrderDTO>> ordersInDates(String dates){
+        String [] s = dates.split(" ");
+        String fromDate = s[0];
+        String toDate = s[1];
+        List<Order> ordersDB = orders.getOrdersInDates(fromDate, toDate);
+        List <OrderDTO> ordersDTO = new ArrayList<>();
+        for (Order o : ordersDB){
+            ordersDTO.add(OrderDTOMapper.orderToDTO(o));
+        }
+        return ResponseEntity.ok().body(ordersDTO);
     }
 }
